@@ -1,0 +1,42 @@
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 1%;
+    /* background-color: #bbb; */
+    /* border-radius: 50%; */
+    display: inline-block;
+    transition: background-color 0.6s ease;
+
+    background-color: rgba(255, 255, 255, 0);
+    border: 2px solid rgb(255, 255, 255);
+    /* height:100px; */
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    /* width:100px; */
+}
+
+.dot-fill {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 1%;
+    background-color: rgb(187, 187, 187);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot:hover {
+    background-color: #717171;
+}
+
+.carousel-control-prev {
+    left: -85px;
+}
+
+.carousel-control-next {
+    right: -85px;
+}
