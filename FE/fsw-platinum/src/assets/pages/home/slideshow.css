@@ -3,14 +3,14 @@
     cursor: pointer;
     height: 12px;
     width: 12px;
-    margin: 0 5%;
+    margin: 0 1%;
     /* background-color: #bbb; */
     /* border-radius: 50%; */
     display: inline-block;
     transition: background-color 0.6s ease;
 
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
     /* height:100px; */
     border-radius: 50%;
     -moz-border-radius: 50%;
@@ -22,7 +22,7 @@
     cursor: pointer;
     height: 12px;
     width: 12px;
-    margin: 0 5%;
+    margin: 0 1%;
     background-color: rgb(187, 187, 187);
     border-radius: 50%;
     display: inline-block;
@@ -34,9 +34,9 @@
 }
 
 .carousel-control-prev {
-    left: -80px;
+    left: -85px;
 }
 
 .carousel-control-next {
-    right: -80px;
+    right: -85px;
 }
