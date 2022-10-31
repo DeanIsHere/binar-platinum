@@ -11,8 +11,14 @@ const GameCard = (props) => {
                         <Card.Text>
                             {props.description}
                         </Card.Text>
+
                         <div className='text-end mx-3' style={{ position: "relative", bottom: 0 }}>
-                            <Button style={{ position: "relative", bottom: 0 }}>Play Game</Button>
+                            {
+                                (props.url) ?
+                                    <a style={{ position: "relative", bottom: 0 }} href={props.url} className="btn btn-success">Play Game</a>
+                                    :
+                                    <Button style={{ position: "relative", bottom: 0 }} className="btn btn-secondary" disabled>Coming Soon</Button>
+                            }
                         </div>
                     </Card.Body>
                 </Row>
