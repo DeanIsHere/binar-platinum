@@ -23,9 +23,10 @@ class Home extends Component {
       },
       {
         id: 2,
-        title: "Kuis Tebak Gambar",
-        description: "Rock Paper Scissors is a traditional game from japane",
-        image: "https://assets.jalantikus.com/assets/cache/0/400/userfiles/2022/05/30/game-tebak-gambar-terbaik-offline-android-ios-cd223.jpg.webp"
+        title: "Space War",
+        description: "Kill your enemies and survive as long as possible in space to get the highest score",
+        image: "https://tresreisgames.in/images/banner1.jpg",
+        url: "/game/spacewar",
       },
       {
         id: 3,
@@ -119,7 +120,7 @@ class Home extends Component {
                 <Row xs={1} md={1} className="g-4 py-3" >
                   {
                     this.state.gameList.map((request) => (
-                      <GameCard key={request.id} title={request.title} description={request.description} image={request.image} />
+                      <GameCard key={request.id} title={request.title} description={request.description} image={request.image} url={request.url} />
                     ))
                   }
                 </Row>
