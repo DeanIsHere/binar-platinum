@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="page-section bg-dark py-5 text-center" id="footer">
       <Container>
-        <span class="span-footer">Terms of Service</span>
+        <span className="span-footer">Terms of Service</span>
       </Container>
     </footer>
   );

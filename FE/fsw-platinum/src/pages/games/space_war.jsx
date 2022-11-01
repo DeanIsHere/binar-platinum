@@ -1,6 +1,9 @@
 import { Component, useState, useEffect, useCallback, Fragment } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { Form, Container, Card, CardGroup, Row, Col } from 'react-bootstrap';
+import Navbar from "../../components/layout/nav/Navbar";
+import { database } from "../../config/firebase"
+import { insertGameScore } from "../../action/games";
 // https://react-unity-webgl.dev/
 // https://github.com/jeffreylanters/react-unity-webgl/discussions/264
 
@@ -23,6 +26,9 @@ function GameSpaceWar() {
         setIsGameOver(true);
         setUserName(userName);
         setScore(score);
+
+        insertGameScore(1, userName, score);
+        // Record Score to Database
     }, []);
 
     useEffect(() => {
@@ -33,26 +39,21 @@ function GameSpaceWar() {
     }, [addEventListener, removeEventListener, handleGameOver]);
 
     return (
-        <Container>
+        <div>
+            <Navbar bgColor="#4A4A5C" />
+            <Container className="mt-5">
 
-            <div className="p-5">
-                <Unity
-                    style={{
-                        width: "100%",
-                        justifySelf: "center",
-                        alignSelf: "center",
-                    }}
-                    unityProvider={unityProvider} />
-            </div>
-            {(score) ?
-                <div>
-                    <h3>Username: {userName}</h3>
-                    <h3>Score: {score}</h3>
+                <div className="p-5">
+                    <Unity
+                        style={{
+                            width: "100%",
+                            justifySelf: "center",
+                            alignSelf: "center",
+                        }}
+                        unityProvider={unityProvider} />
                 </div>
-                :
-                null
-            }
-        </Container>
+            </Container>
+        </div>
     )
 }
 
