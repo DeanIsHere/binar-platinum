@@ -111,7 +111,7 @@ class Home extends Component {
                   <Col>
                     <Form>
                       <Form.Group className="mb-3 mt-3" controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Search Game" value={this.state.gameSearch} onChange={this.handleSearchGame} />
+                        <Form.Control type="text" placeholder="Search Game" value={this.state.gameSearch} onChange={this.handleSearchGame} />
                       </Form.Group>
                     </Form>
                   </Col>
