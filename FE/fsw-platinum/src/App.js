@@ -1,8 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import './App.css';
-import Home from './pages/home';
-import GameSpaceWar from './pages/games/space_war';
+import "./App.css";
+import Home from "./pages/home";
+import GameSpaceWar from "./pages/games/space_war";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/game/spacewar" element={<GameSpaceWar />} />
-      </Routes>
-    </Router>
+        <Route path="/profile/:id" element={<Profile />} />
+      </Routes >
+    </Router >
   );
 }
 

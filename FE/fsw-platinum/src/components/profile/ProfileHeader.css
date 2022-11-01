@@ -1,0 +1,132 @@
+:root {
+  --bg-profile-header-rt: #464343;
+}
+
+.section-profile__header {
+  padding: 0rem;
+}
+
+.profile-header__left--img {
+  max-width: 180px;
+  max-height: 180px;
+}
+
+.profile-header__rt {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--bg-profile-header-rt);
+  padding: 1rem 1rem;
+}
+
+.btn-edit__profile {
+  background-color: #34c47f;
+  border-radius: 5px;
+  border: none;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.5rem;
+  color: #fff;
+  font-weight: bold;
+}
+
+.profile-header__rt--title {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.profile-header__rt--text {
+  font-size: 0.5rem;
+  color: #fff;
+}
+
+.profile-header__rb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 1rem 1rem;
+}
+
+.profile-header__rb--title {
+  font-size: 1rem;
+  text-align: left;
+  color: #fff;
+  margin: 0;
+}
+
+.profile-header__rb--text {
+  font-size: 0.5rem;
+  color: #fff;
+}
+
+@media (min-width: 459px) {
+  .btn-edit__profile {
+    padding: 0.15rem 0.5rem;
+    font-size: 0.625rem;
+  }
+
+  .profile-header__rt--title {
+    font-size: 0.875rem;
+  }
+
+  .profile-header__rt--text {
+    font-size: 0.625rem;
+    word-break: normal;
+  }
+
+  .profile-header__rb--title {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .profile-header__rb--text {
+    font-size: 0.625rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .profile-header__left--img {
+    max-width: 230px;
+    max-height: 230px;
+  }
+
+  .btn-edit__profile {
+    border-radius: 5px;
+    padding: 0.15rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .profile-header__rt {
+    padding: 1.5rem 3rem;
+  }
+
+  .profile-header__rt--title {
+    font-size: 1.25rem;
+  }
+
+  .profile-header__rt--text {
+    font-size: 0.875rem;
+  }
+
+  .profile-header__rb {
+    padding: 1.5rem 3rem;
+  }
+
+  .profile-header__rb--title {
+    font-size: 2rem;
+  }
+
+  .profile-header__rb--text {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .profile-header__rb {
+    padding: 1.5rem 4.5rem;
+  }
+  .profile-header__rb--title {
+    font-size: 3rem;
+  }
+}
