@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./pages/home";
 import GameSpaceWar from "./pages/games/space_war";
 import Profile from "./pages/profile/Profile";
+import Register from "./pages/register";
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/game/spacewar" element={<GameSpaceWar />} />
         <Route path="/profile/:id" element={<Profile />} />
-      </Routes >
-    </Router >
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
   );
 }
 
