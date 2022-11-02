@@ -1,0 +1,9 @@
+Card .game-details{
+    position:relative;
+    display: inline-flex;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+  }
