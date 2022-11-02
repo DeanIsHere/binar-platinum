@@ -26,4 +26,5 @@ const ProfileGameHistory = () => {
   );
 };
 
+
 export default ProfileGameHistory;
