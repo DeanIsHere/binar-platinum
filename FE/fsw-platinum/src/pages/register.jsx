@@ -1,5 +1,5 @@
-// import { authFirebase } from "../config/firebase";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
+import { authFirebase } from "../config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Component } from "react";
 import { Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
@@ -17,18 +17,18 @@ class Register extends Component {
     password: ''
   }
   
-  // handleRegister = () => {
-  //   createUserWithEmailAndPassword(authFirebase, this.state.email, this.state.password)
-  //     .then((userCredential) => {
-  //       const user = userCredential.user;
-  //       localStorage.setItem('jwt-token', user.accessToken)
-  //       window.location.href = '/'
-  //     })
-  //     .catch((error) => {
-  //       const errorMessage = error.message;
-  //       alert(errorMessage)
-  //     });
-  // }
+  handleRegister = () => {
+    createUserWithEmailAndPassword(authFirebase, this.state.email, this.state.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        localStorage.setItem('jwt-token', user.accessToken)
+        window.location.href = '/'
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage)
+      });
+  }
 
   handleOnChange = (event) => {
     this.setState({
