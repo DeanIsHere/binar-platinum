@@ -1,4 +1,4 @@
-import { set, ref, push, onValue } from "firebase/database";
+import { set, ref, push, onValue, query } from "firebase/database";
 import { database } from "../config/firebase";
 
 const db = database
@@ -53,6 +53,7 @@ export const retrieveAllGames = () => {
                     data: snapshot.val()[key]
                 })
             })
+            // resolve(value)
             resolve(value)
         })
     })

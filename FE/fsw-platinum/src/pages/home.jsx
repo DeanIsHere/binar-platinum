@@ -24,7 +24,7 @@ class Home extends Component {
     await this.setState(data => ({
       gameSearch: event.target.value
     }))
-    // Kirim API di sini
+    this.componentDidMount()
   }
 
   async componentDidMount() {
@@ -34,7 +34,6 @@ class Home extends Component {
       gameList: data_game,
       slideshow: data_slideshow,
     })
-    // console.log(data)
   }
 
   render() {

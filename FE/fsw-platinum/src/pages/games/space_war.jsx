@@ -8,10 +8,6 @@ import { insertGameScore } from "../../action/games";
 // https://github.com/jeffreylanters/react-unity-webgl/discussions/264
 
 function GameSpaceWar() {
-    const [isGameOver, setIsGameOver] = useState(false);
-    const [userName, setUserName] = useState("");
-    const [score, setScore] = useState(0);
-
     const { unityProvider, sendMessage, addEventListener, removeEventListener } = useUnityContext({
         loaderUrl: "/game/space_war/BinarSpaceWar.loader.js",
         dataUrl: "/game/space_war/BinarSpaceWar.data.unityweb",
@@ -23,12 +19,7 @@ function GameSpaceWar() {
 
 
     const handleGameOver = useCallback((userName, score) => {
-        setIsGameOver(true);
-        setUserName(userName);
-        setScore(score);
-
-        insertGameScore(1, userName, score);
-        // Record Score to Database
+        insertGameScore('space_war', userName, score);
     }, []);
 
     useEffect(() => {
