@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import GameSpaceWar from "./pages/games/space_war";
 import Profile from "./pages/profile/Profile";
 import GameDetail from "./pages/GameDetail";
+import Register from "./pages/register";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/game/spacewar" element={<GameSpaceWar />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/detail/:game" element={<GameDetail />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
