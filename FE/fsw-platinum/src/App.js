@@ -12,8 +12,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/game/spacewar" element={<GameSpaceWar />} />
         <Route path="/profile/:id" element={<Profile />} />
-      </Routes>
-    </Router>
+      </Routes >
+    </Router >
   );
 }
 
