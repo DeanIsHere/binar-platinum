@@ -12,14 +12,14 @@ const GameDetailLB = () => {
           height: "100vh",
         }}
       >
-        {/* ProfileGameHistory Top */}
+        {/* Game Leader Board Top */}
         <div style={{ backgroundColor: "#464343" }}>
           <Card.Header className="detail-game__history--header">
             GAME RANK
           </Card.Header>
         </div>
 
-        {/* ProfileGameHistory Bottom */}
+        {/* Game Leader Board Bottom */}
         <Card.Body>{/* Game History */}</Card.Body>
       </Card>
     </section>
