@@ -1,0 +1,49 @@
+.container {
+  padding-right: 10px;
+  padding-left: 0;
+}
+
+.modal_body{
+  border: none;
+  padding: 0;
+  border-radius: 100px;
+}
+
+.row_left{
+  max-width: 430px;
+  height: 553px;
+  display: flex;
+  justify-content: left;
+  background-image: url(../../assets/images/login-image.png);
+  background-color: #1e1e1e;
+  background-repeat: no-repeat;
+}
+
+.row_right{
+  max-width: 430px;
+  max-height: 553px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login_image {
+  max-width: 100%;
+  max-height: 553px;
+}
+
+.logo_image {
+  max-width: 216px;
+  max-height: 54px;
+}
+
+.form_login {
+  width: 90%;
+  padding-top: 20%;
+}
+
+.lupa_pass {
+  padding-bottom: 20%;
+  text-decoration: none;
+}
