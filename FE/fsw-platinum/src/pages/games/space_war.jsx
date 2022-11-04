@@ -19,7 +19,7 @@ function GameSpaceWar() {
 
 
     const handleGameOver = useCallback((userName, score) => {
-        insertGameScore('space_war', userName, score);
+        insertGameScore('-NG-FxcdZAq13GcqcZIm', userName, score);
     }, []);
 
     useEffect(() => {
