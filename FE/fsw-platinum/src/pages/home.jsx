@@ -10,7 +10,7 @@ import btnSlide from '../assets/images/scroll_down.svg'
 import GameCard from '../components/home/game_card'
 import Slideshow from '../components/home/slideshow'
 import Footer from "../components/layout/footer/Footer";
-import { retrieveAllGames, retrieveAllSlideshow } from "../action/games";
+import { retrieveAllGames, retrieveAllSlideshow, seederGame } from "../action/games";
 
 
 class Home extends Component {
@@ -21,6 +21,7 @@ class Home extends Component {
   }
 
   handleSearchGame = async (event) => {
+    // await seederGame()
     await this.setState(data => ({
       gameSearch: event.target.value
     }))
@@ -96,7 +97,7 @@ class Home extends Component {
                 <Row xs={1} md={1} className="g-4 py-3" >
                   {
                     this.state.gameList.map((data) => (
-                      <GameCard key={data.id} title={data.data.title} description={data.data.description} image={data.data.image} url={data.data.url} />
+                      <GameCard key={data.id} title={data.data.game_title} description={data.data.game_description} image={data.data.game_image} url={data.data.game_url} />
                     ))
                   }
                 </Row>
