@@ -44,10 +44,10 @@ class Register extends Component {
           <Container>
             <div className="register">
               <div style={{ backgroundColor: "#B02C25"}}>
-                <a><img src={logo} className="img_logo" /></a>
+                <a className="img_a"><img src={logo} className="img_logo" /></a>
               </div>
               <div style={{ backgroundColor: "#FFFFFF"}}>
-                <h3>REGISTER NEW ACCOUNT</h3>
+                <h3 className="h3">REGISTER NEW ACCOUNT</h3>
                 <Form style={{ padding: "25px 100px"}}>
                   <Form.Group className="mb-1">
                     <Form.Control 
@@ -81,7 +81,6 @@ class Register extends Component {
                     <Button 
                       variant="primary" 
                       size ="lg" 
-                      type="submit" 
                       onClick={this.handleRegister}>
                       REGISTER
                     </Button>
