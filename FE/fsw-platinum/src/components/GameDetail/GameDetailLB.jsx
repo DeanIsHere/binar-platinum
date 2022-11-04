@@ -1,10 +1,10 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import "./ProfileGameHistory.css";
+import "./GameDetailLB.css";
 
-const ProfileGameHistory = () => {
+const GameDetailLB = () => {
   return (
-    <section class="section-profile__game--history">
+    <section class="section-detail__game--history">
       <Card
         style={{
           backgroundColor: "#3B3838",
@@ -12,14 +12,14 @@ const ProfileGameHistory = () => {
           height: "100vh",
         }}
       >
-        {/* ProfileGameHistory Top */}
+        {/* Game Leader Board Top */}
         <div style={{ backgroundColor: "#464343" }}>
-          <Card.Header className="profile-game__history--header">
-            GAME HISTORY
+          <Card.Header className="detail-game__history--header">
+            GAME RANK
           </Card.Header>
         </div>
 
-        {/* ProfileGameHistory Bottom */}
+        {/* Game Leader Board Bottom */}
         <Card.Body>{/* Game History */}</Card.Body>
       </Card>
     </section>
@@ -27,4 +27,4 @@ const ProfileGameHistory = () => {
 };
 
 
-export default ProfileGameHistory;
+export default GameDetailLB;
