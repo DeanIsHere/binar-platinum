@@ -7,6 +7,7 @@ import Profile from "./pages/profile/Profile";
 import GameDetail from "./pages/GameDetail";
 import Register from "./pages/register";
 import EditProfile from "./pages/EditProfile";
+import GameRPS from "./pages/games/rock_paper_scissors";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/game/spacewar" element={<GameSpaceWar />} />
+        <Route path="/game/game_rps" element={<GameRPS />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/detail/:game" element={<GameDetail />} />
         <Route path="/register" element={<Register />} />
