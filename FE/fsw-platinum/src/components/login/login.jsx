@@ -15,7 +15,7 @@ import logo from '../../assets/images/echamp.png';
 import '../login/login.css'
 
 class Login extends Component {
-  state={
+  state = {
     email: '',
     password: ''
   }
@@ -27,6 +27,7 @@ class Login extends Component {
         console.log(user)
         localStorage.setItem('jwt-token', user.accessToken)
         localStorage.setItem('UID', user.uid)
+        window.location.reload(false);
         // window.location.href = '/'
       })
       .catch((error) => {
@@ -41,56 +42,56 @@ class Login extends Component {
     })
   }
 
-  render (){
-    return(
-      <Modal 
-      show={this.props.showModal} 
-      onHide={this.props.toggleFunc}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered>
+  render() {
+    return (
+      <Modal
+        show={this.props.showModal}
+        onHide={this.props.toggleFunc}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered>
         <Modal.Body className="show-grid modal_body">
-        <Container>
-          <Row>
-            <Col md={6} className="row_left">
-            </Col>
-            <Col md={6} className="row_right">
-              <div>
-                <img src={logo} className="logo_image"/>
-              </div>
-              <div className="form_login">
-              <Form>
-                <Form.Group className="mb-3">
-                  <Form.Control 
-                  type="email" 
-                  placeholder="Enter email"
-                  id="email"
-                  onChange={this.handleOnChange} />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Control 
-                  type="password" 
-                  placeholder="Password" 
-                  id="password"
-                  onChange={this.handleOnChange}/>
-                </Form.Group>
-                <div className="d-grid gap-2 pb-2">
-                  <Button variant="primary" onClick={this.handleLogin}>
-                    LOGIN
-                  </Button>
+          <Container>
+            <Row>
+              <Col md={6} className="row_left">
+              </Col>
+              <Col md={6} className="row_right">
+                <div>
+                  <img src={logo} className="logo_image" />
                 </div>
-              </Form>
-              </div>
-              <div className="lupa_pass">
+                <div className="form_login">
+                  <Form>
+                    <Form.Group className="mb-3">
+                      <Form.Control
+                        type="email"
+                        placeholder="Enter email"
+                        id="email"
+                        onChange={this.handleOnChange} />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Control
+                        type="password"
+                        placeholder="Password"
+                        id="password"
+                        onChange={this.handleOnChange} />
+                    </Form.Group>
+                    <div className="d-grid gap-2 pb-2">
+                      <Button variant="primary" onClick={this.handleLogin}>
+                        LOGIN
+                      </Button>
+                    </div>
+                  </Form>
+                </div>
+                <div className="lupa_pass">
                   <span>Lupa password? klik&nbsp;<a href="#">disini</a></span>
-              </div>
-              <div >
-                <span>Belum punya akun?&nbsp;<a href="/register">Buat akun</a>&nbsp;baru</span>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </Modal.Body>
+                </div>
+                <div >
+                  <span>Belum punya akun?&nbsp;<a href="/register">Buat akun</a>&nbsp;baru</span>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>
       </Modal>
     )
   }

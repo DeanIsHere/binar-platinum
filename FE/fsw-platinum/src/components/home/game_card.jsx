@@ -1,6 +1,13 @@
+import { useEffect, useState } from 'react';
 import { Card, Row, Col, Button } from 'react-bootstrap';
+import { checkDataLogin } from '../../action/autentication';
 
 const GameCard = (props) => {
+    const [isLogin, setIsLogin] = useState(false);
+    useEffect(() => {
+        checkDataLogin(setIsLogin)
+    }, []);
+
     return (
         <Col className='mt-2'>
             <Card style={{ backgroundColor: '#00000050' }}>
@@ -15,9 +22,12 @@ const GameCard = (props) => {
                         <div className='text-end mx-3' style={{ position: "relative", bottom: 0 }}>
                             {
                                 (props.url) ?
-                                    <a style={{ position: "relative", bottom: 0 }} href={props.url} className="btn btn-success">Play Game</a>
+                                    (isLogin) ?
+                                        <a style={{ position: "relative", bottom: 0 }} href={props.url} className="btn btn-success">PLAY GAME</a>
+                                        :
+                                        <a style={{ position: "relative", bottom: 0 }} className="btn btn-secondary" disabled>LOGIN BEFORE PLAY</a>
                                     :
-                                    <Button style={{ position: "relative", bottom: 0 }} className="btn btn-secondary" disabled>Coming Soon</Button>
+                                    <Button style={{ position: "relative", bottom: 0 }} className="btn btn-secondary" disabled>COMING SOON</Button>
                             }
                         </div>
                     </Card.Body>
