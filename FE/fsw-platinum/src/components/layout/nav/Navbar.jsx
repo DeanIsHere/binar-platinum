@@ -1,7 +1,15 @@
 import React from "react";
 import logo from "../../../assets/images/echamp-white.png";
+import Login from '../../login/login'
+import { useState } from "react";
 
 const Navbar = ({ bgColor, user }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal((previousValue) => !previousValue);
+    }
+
   return (
     <>
       <nav
@@ -46,7 +54,7 @@ const Navbar = ({ bgColor, user }) => {
             </ul>
             <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="#" onClick={toggleModal}>
                   LOGIN
                 </a>
               </li>
@@ -54,6 +62,9 @@ const Navbar = ({ bgColor, user }) => {
           </div>
         </div>
       </nav>
+      <Login
+        showModal={showModal}
+        toggleFunc={toggleModal} />
     </>
   );
 };
