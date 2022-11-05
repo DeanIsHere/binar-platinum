@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../../assets/images/echamp-white.png";
 import Login from "../../login/login";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { authFirebase } from "../../../config/firebase";
 import { checkDataLogin, firebaseLogout } from "../../../action/autentication";
@@ -10,11 +11,17 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
   const [showModal, setShowModal] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
 
+  let dispatch = useDispatch();
+
   const toggleModal = () => {
     setShowModal((previousValue) => !previousValue);
   };
 
   const handleLogout = () => {
+    dispatch({
+      type: "LOGOUT",
+      payload: null,
+    });
     firebaseLogout();
   };
   useEffect(() => {
@@ -79,7 +86,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
                     className="nav-link"
                     href="#"
                     onClick={() => {
-                      if (window.confirm("Aure you sure to Logout?")) {
+                      if (window.confirm("Are you sure to Logout?")) {
                         handleLogout();
                       }
                     }}
