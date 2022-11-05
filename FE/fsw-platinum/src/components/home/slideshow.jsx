@@ -1,6 +1,7 @@
 import { Form, Container, Card, CardGroup, Row, Col, Button } from 'react-bootstrap';
 
 import btnSlide from '../../assets/images/scroll_down.svg'
+import '../../assets/pages/home/slideshow.css';
 
 const Slideshow = (props) => {
     return (
@@ -22,11 +23,11 @@ const Slideshow = (props) => {
                     props.data.map((request, index) => (
                         (index === 0) ?
                             <div className="carousel-item active" key={request.id} style={style.slideshow}>
-                                <img className="d-block w-100" src={request.image} />
+                                <img className="d-block w-100" src={request.data.hs_image} />
                             </div>
                             :
                             <div className="carousel-item" key={request.id} style={style.slideshow}>
-                                <img className="d-block w-100" src={request.image} />
+                                <img className="d-block w-100" src={request.data.hs_image} />
                             </div>
                     ))
                 }

@@ -1,0 +1,32 @@
+.img_a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.img_logo {
+  height: 43px;
+}
+
+.h3 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.register {
+  max-width: 505px;
+  margin: auto;
+  padding-top: 150px;
+  padding-bottom: 100px;
+  border-radius: 10px;
+}

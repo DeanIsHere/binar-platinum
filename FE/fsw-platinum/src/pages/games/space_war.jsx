@@ -1,14 +1,18 @@
 import { Component, useState, useEffect, useCallback, Fragment } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 import { Form, Container, Card, CardGroup, Row, Col } from 'react-bootstrap';
+import Navbar from "../../components/layout/nav/Navbar";
+import { database } from "../../config/firebase"
+import { insertGameScore } from "../../action/games";
+import { checkDataLogin } from "../../action/autentication";
 // https://react-unity-webgl.dev/
 // https://github.com/jeffreylanters/react-unity-webgl/discussions/264
 
-function GameSpaceWar() {
-    const [isGameOver, setIsGameOver] = useState(false);
-    const [userName, setUserName] = useState("");
-    const [score, setScore] = useState(0);
 
+const GameSpaceWar = () => {
+    // const [isLogin, setIsLogin] = useState(true);
+    const game_id = "-NG-FxcdZAq13GcqcZIm"
+    const uuid = localStorage.getItem('UID');
     const { unityProvider, sendMessage, addEventListener, removeEventListener } = useUnityContext({
         loaderUrl: "/game/space_war/BinarSpaceWar.loader.js",
         dataUrl: "/game/space_war/BinarSpaceWar.data.unityweb",
@@ -19,11 +23,10 @@ function GameSpaceWar() {
     sendMessage("JavascriptHook", "ChangeData", "HarlanSR");
 
 
-    const handleGameOver = useCallback((userName, score) => {
-        setIsGameOver(true);
-        setUserName(userName);
-        setScore(score);
+    const handleGameOver = useCallback((userName2, score) => {
+        insertGameScore(game_id, uuid, score);
     }, []);
+
 
     useEffect(() => {
         addEventListener("GameOver", handleGameOver);
@@ -33,26 +36,21 @@ function GameSpaceWar() {
     }, [addEventListener, removeEventListener, handleGameOver]);
 
     return (
-        <Container>
+        <div>
+            <Navbar bgColor="#4A4A5C" />
+            <Container className="mt-5">
 
-            <div className="p-5">
-                <Unity
-                    style={{
-                        width: "100%",
-                        justifySelf: "center",
-                        alignSelf: "center",
-                    }}
-                    unityProvider={unityProvider} />
-            </div>
-            {(score) ?
-                <div>
-                    <h3>Username: {userName}</h3>
-                    <h3>Score: {score}</h3>
+                <div className="p-5">
+                    <Unity
+                        style={{
+                            width: "100%",
+                            justifySelf: "center",
+                            alignSelf: "center",
+                        }}
+                        unityProvider={unityProvider} />
                 </div>
-                :
-                null
-            }
-        </Container>
+            </Container>
+        </div>
     )
 }
 

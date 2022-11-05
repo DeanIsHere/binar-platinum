@@ -1,18 +1,39 @@
 import React from "react";
 import logo from "../../../assets/images/echamp-white.png";
+import Login from "../../login/login";
+import { useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { authFirebase } from "../../../config/firebase";
+import { checkDataLogin, firebaseLogout } from "../../../action/autentication";
 
-const Navbar = ({ bgColor, user }) => {
+const Navbar = ({ bgColor, user, transparant = false }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+
+  const toggleModal = () => {
+    setShowModal((previousValue) => !previousValue);
+  };
+
+  const handleLogout = () => {
+    firebaseLogout();
+  };
+  useEffect(() => {
+    checkDataLogin(setIsLogin);
+  }, []);
+
   return (
     <>
       <nav
-        className={`navbar navbar-expand-lg ${
-          bgColor ? `${bgColor}` : "navbar-dark"
-        } fixed-top`}
+        className="navbar navbar-expand-lg navbar-dark fixed-top"
+        style={
+          transparant
+            ? null
+            : { backgroundColor: bgColor ? `${bgColor}` : "#212529" }
+        }
         id="mainNav"
-        style={{ backgroundColor: bgColor ? `${bgColor}` : "#212529" }}
       >
         <div className="container">
-          <a className="navbar-brand" href="#page-top">
+          <a className="navbar-brand" href="/">
             <img src={logo} />
           </a>
           <button
@@ -30,31 +51,56 @@ const Navbar = ({ bgColor, user }) => {
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav text-uppercase ms-5 py-4 py-lg-0">
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/">
                   HOME
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#game">
+                <a className="nav-link" href="/#game">
                   GAME
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#leaderboard">
+                <a className="nav-link" href="/#leaderboard">
                   LEADERBOARD
                 </a>
               </li>
             </ul>
-            <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  LOGIN
-                </a>
-              </li>
-            </ul>
+            {isLogin ? (
+              <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li className="nav-item">
+                  <a className="nav-link" href="/profile/1">
+                    PROFILE
+                  </a>
+                </li>
+                <li className="nav-item">
+                  {/* <a className="nav-link" href="#" onClick={handleLogout}> */}
+                  <a
+                    className="nav-link"
+                    href="#"
+                    onClick={() => {
+                      if (window.confirm("Aure you sure to Logout?")) {
+                        handleLogout();
+                      }
+                    }}
+                  >
+                    LOGOUT
+                  </a>
+                </li>
+              </ul>
+            ) : (
+              <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                <li className="nav-item">
+                  <a className="nav-link" href="#" onClick={toggleModal}>
+                    LOGIN
+                  </a>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>
+      <Login showModal={showModal} toggleFunc={toggleModal} />
     </>
   );
 };
