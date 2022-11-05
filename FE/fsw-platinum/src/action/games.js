@@ -8,7 +8,7 @@ export const seederGame = () => {
         "Rock Paper Scissors Online",
         "Rock Paper Scissors is a traditional game from japane",
         "https://img.freepik.com/premium-vector/hands-playing-rock-paper-scissors-game-flat-design-style-vector-illustration_540284-598.jpg?w=2000",
-        ""
+        "/game/game_rps"
     )
     insertGame(
         "Space War",

@@ -11,7 +11,7 @@ import { checkDataLogin } from "../../action/autentication";
 
 const GameSpaceWar = () => {
     // const [isLogin, setIsLogin] = useState(true);
-    const game_id = "-NG-Fxccy-8f1RZoup6D"
+    const game_id = "-NG-FxcdZAq13GcqcZIm"
     const uuid = localStorage.getItem('UID');
     const { unityProvider, sendMessage, addEventListener, removeEventListener } = useUnityContext({
         loaderUrl: "/game/space_war/BinarSpaceWar.loader.js",

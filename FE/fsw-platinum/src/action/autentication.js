@@ -1,7 +1,7 @@
 import { authFirebase } from "../config/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
-export const checkDataLogin = async (setIsLogin) => {
+export const checkDataLogin = async (setIsLogin, setDataUser = () => { }) => {
     const uuid = await localStorage.getItem('UID');
     if (uuid == null) {
         setIsLogin(false)
@@ -9,7 +9,7 @@ export const checkDataLogin = async (setIsLogin) => {
         setIsLogin(true)
         onAuthStateChanged(authFirebase, (user) => {
             if (user) {
-                console.log("Data User semua", user)
+                setDataUser(user)
             } else {
                 setIsLogin(false)
             }
