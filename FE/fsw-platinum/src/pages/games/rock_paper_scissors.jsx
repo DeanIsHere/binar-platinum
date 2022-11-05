@@ -6,10 +6,11 @@ import img_hand_gunting from "../../assets/images/games/rock-paper-scissors/hand
 import img_icon_refresh from "../../assets/images/games/rock-paper-scissors/icon_refresh.png"
 import "../../assets/pages/games/rock_paper_scissors/style.css"
 import { insertGameScore } from "../../action/games";
+import { checkDataLogin } from "../../action/autentication";
 
 const GameRPS = () => {
     const game_id = "-NG-Fxccy-8f1RZoup6D"
-    const userName = "HarlanSR"
+    const uuid = localStorage.getItem('UID');
 
     let color_chose = '#C4C4C4';
     let color_unchose = '#00000000';
@@ -81,11 +82,11 @@ const GameRPS = () => {
         text_vs.style.display = "none";
 
         if (who_won === 1) {
-            insertGameScore(game_id, userName, 2);
+            insertGameScore(game_id, uuid, 2);
         } else if (who_won === 2) {
-            insertGameScore(game_id, userName, -1);
+            insertGameScore(game_id, uuid, -1);
         } else {
-            insertGameScore(game_id, userName, 0);
+            insertGameScore(game_id, uuid, 0);
         }
     }
 
