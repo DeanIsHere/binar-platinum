@@ -8,7 +8,7 @@ const ProfileGameHistory = () => {
       <Card
         style={{
           backgroundColor: "#3B3838",
-          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25);",
+          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
           height: "100vh",
         }}
       >
