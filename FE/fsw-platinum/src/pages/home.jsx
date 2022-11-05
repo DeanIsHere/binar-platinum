@@ -11,6 +11,7 @@ import GameCard from '../components/home/game_card'
 import Slideshow from '../components/home/slideshow'
 import Footer from "../components/layout/footer/Footer";
 import { retrieveAllGames, retrieveAllSlideshow, seederGame } from "../action/games";
+import Navbar from "../components/layout/nav/Navbar";
 
 
 class Home extends Component {
@@ -29,6 +30,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
+    // console.log(localStorage.getItem('jwt-token'))
     const data_game = await retrieveAllGames()
     const data_slideshow = await retrieveAllSlideshow()
     this.setState({
@@ -40,25 +42,7 @@ class Home extends Component {
   render() {
     return (
       <div style={{ backgroundColor: '#2B2D33', color: '#fff' }}>
-        <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-          <div className="container">
-            <a className="navbar-brand" href="#page-top"><img src={logo} /></a>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-              Menu
-              <i className="fas fa-bars ms-1"></i>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarResponsive">
-              <ul className="navbar-nav text-uppercase ms-5 py-4 py-lg-0">
-                <li className="nav-item"><a className="nav-link" href="#">HOME</a></li>
-                <li className="nav-item"><a className="nav-link" href="#game">GAME</a></li>
-                <li className="nav-item"><a className="nav-link" href="#leaderboard">LEADERBOARD</a></li>
-              </ul>
-              <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                <li className="nav-item"><a className="nav-link" href="#">LOGIN</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+        <Navbar bgColor="#4A4A5C" transparant='1' />
 
         <header className="" style={style.header}>
           <div className="container">
