@@ -181,18 +181,18 @@ const GameRPS = () => {
                             <div className="col-12">
                                 <h4><strong>COM</strong></h4>
                             </div>
-                            <div className="col-12 container-hand-items py-4">
-                                <div id="hand_com_1" className="card-hand my-2">
+                            <div className="col-12 container-hand-items ">
+                                <div id="hand_com_1" className="card-hand">
                                     <img src={img_hand_batu} className="img-hand" />
                                 </div>
                             </div>
-                            <div className="col-12 container-hand-items py-4">
-                                <div id="hand_com_2" className="card-hand my-2">
+                            <div className="col-12 container-hand-items ">
+                                <div id="hand_com_2" className="card-hand">
                                     <img src={img_hand_kertas} className="img-hand" />
                                 </div>
                             </div>
-                            <div className="col-12 container-hand-items py-4">
-                                <div id="hand_com_3" className="card-hand my-2">
+                            <div className="col-12 container-hand-items ">
+                                <div id="hand_com_3" className="card-hand">
                                     <img src={img_hand_gunting} className="img-hand" />
                                 </div>
                             </div>
