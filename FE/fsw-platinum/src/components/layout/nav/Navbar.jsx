@@ -69,7 +69,8 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={handleLogout}>
+                  {/* <a className="nav-link" href="#" onClick={handleLogout}> */}
+                  <a className="nav-link" href="#" onClick={() => { if (window.confirm('Aure you sure to Logout?')) { handleLogout() }; }}>
                     LOGOUT
                   </a>
                 </li>
