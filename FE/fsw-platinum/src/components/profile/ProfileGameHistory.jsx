@@ -4,7 +4,7 @@ import "./ProfileGameHistory.css";
 
 const ProfileGameHistory = () => {
   return (
-    <section class="section-profile__game--history">
+    <section className="section-profile__game--history">
       <Card
         style={{
           backgroundColor: "#3B3838",
