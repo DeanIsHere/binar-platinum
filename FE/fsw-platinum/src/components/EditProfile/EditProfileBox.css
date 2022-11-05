@@ -1,0 +1,20 @@
+.inputBox{
+    width: 80%;
+    margin:auto;
+}
+
+.input-title{
+    color: white;
+    margin: auto;
+}
+
+.img-input{
+    margin: auto;
+    width: 80%;
+}
+
+.edit-header__left--img{
+    max-width:300px;
+    max-height: 300px;
+    margin: auto;
+}
