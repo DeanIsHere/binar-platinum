@@ -4,10 +4,15 @@ import { Form, Container, Card, CardGroup, Row, Col } from 'react-bootstrap';
 import Navbar from "../../components/layout/nav/Navbar";
 import { database } from "../../config/firebase"
 import { insertGameScore } from "../../action/games";
+import { checkDataLogin } from "../../action/autentication";
 // https://react-unity-webgl.dev/
 // https://github.com/jeffreylanters/react-unity-webgl/discussions/264
 
-function GameSpaceWar() {
+
+const GameSpaceWar = () => {
+    // const [isLogin, setIsLogin] = useState(true);
+    const game_id = "-NG-Fxccy-8f1RZoup6D"
+    const uuid = localStorage.getItem('UID');
     const { unityProvider, sendMessage, addEventListener, removeEventListener } = useUnityContext({
         loaderUrl: "/game/space_war/BinarSpaceWar.loader.js",
         dataUrl: "/game/space_war/BinarSpaceWar.data.unityweb",
@@ -18,9 +23,10 @@ function GameSpaceWar() {
     sendMessage("JavascriptHook", "ChangeData", "HarlanSR");
 
 
-    const handleGameOver = useCallback((userName, score) => {
-        insertGameScore('space_war', userName, score);
+    const handleGameOver = useCallback((userName2, score) => {
+        insertGameScore(game_id, uuid, score);
     }, []);
+
 
     useEffect(() => {
         addEventListener("GameOver", handleGameOver);

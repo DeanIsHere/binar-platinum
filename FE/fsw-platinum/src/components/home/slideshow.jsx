@@ -23,11 +23,11 @@ const Slideshow = (props) => {
                     props.data.map((request, index) => (
                         (index === 0) ?
                             <div className="carousel-item active" key={request.id} style={style.slideshow}>
-                                <img className="d-block w-100" src={request.data.image} />
+                                <img className="d-block w-100" src={request.data.hs_image} />
                             </div>
                             :
                             <div className="carousel-item" key={request.id} style={style.slideshow}>
-                                <img className="d-block w-100" src={request.data.image} />
+                                <img className="d-block w-100" src={request.data.hs_image} />
                             </div>
                     ))
                 }
