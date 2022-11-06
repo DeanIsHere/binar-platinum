@@ -1,10 +1,30 @@
 import React from "react";
 import { Card, Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { getGameInfoById } from "../../action/fb_database";
 import "./GameDetailHeader.css";
+import { useState } from "react";
+import { useEffect } from "react";
 
 
-const GameDetailHeader = ({ user }) => {
-    console.log(user);
+const GameDetailHeader = ({ game_detail }) => {
+    console.log(game_detail);
+    const {id} = useParams()
+    const [gameDetail, setgameDetail] = useState({
+      game_description: "loading...",
+      game_image: "https://miro.medium.com/max/880/0*H3jZONKqRuAAeHnG.jpg",
+      game_title: "loading...",
+      game_url: "loading..."
+    })
+
+    const getGameDetail = async () =>{
+      const resp = await getGameInfoById(id)
+      setgameDetail(resp)
+    }
+    
+    useEffect(() => {
+      getGameDetail()
+    },[])
 
     return (
     <div>
@@ -15,14 +35,14 @@ const GameDetailHeader = ({ user }) => {
 
           <Card.Img
             className="detail-header__left--img"
-            src='https://pbs.twimg.com/media/EYNdenzVAAAuZKe.jpg'
+            src={gameDetail.game_image}
 
           />
           <div className="d-flex flex-column w-100">
             <Card.Header className="detail-header__rt">
               <div>
                 <Card.Title className="detail-header__rt--title">
-                  SPACE WARS
+                  {gameDetail.game_title}
                 </Card.Title>
               </div>
   
@@ -40,12 +60,12 @@ const GameDetailHeader = ({ user }) => {
               <div className="detail-header__rb">
                 <div>
                   <Card.Text className="detail-header__rb--text">
-                    Game Tembak Tembakan Tapi Pake Pesawat Elon Musk
+                  {gameDetail.game_description}
                   </Card.Text>
                 </div>
-                <button className="btn-edit__detail" href='#'>
+                <a className="btn-edit__detail btn" href={gameDetail.game_url}>
                   PlayGame
-                </button>
+                </a>
               </div>
             </Card.Body>
           </div>

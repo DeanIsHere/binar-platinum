@@ -6,11 +6,11 @@ const db = database
 //write biodata
 
 export const CreateUser = (name,username,email) =>{
-    const dbRef = ref(db,'game_user')
+    const dbRef = ref(db,`game_user`)
     const data = {
         name,
         username,
-        email //nanti ambil dari auth via decode jwt
+        email, //nanti ambil dari auth via decode jwt
         total_score:0,
         city: null,
         social_media: null,
@@ -59,7 +59,16 @@ export const updateProfileImg = (id, profile_picture) => {
     }
     update(dbRef, data)
   }
-
+//get game info
+export const getGameInfoById = (id) => {
+  return new Promise((resolve, reject) => {
+    const dbRef = ref(db, `game_info/${id}`)
+    onValue(dbRef, (data) => {
+      const value = data.val()
+      resolve(value)
+    })
+  })
+}
 //total point
 
 //game history
