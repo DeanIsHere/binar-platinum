@@ -4,7 +4,6 @@ import GameDetailHeader from "../components/GameDetail/GameDetailHeader";
 import GameDetailLB from "../components/GameDetail/GameDetailLB";
 import Navbar from "../components/layout/nav/Navbar";
 
-
 class GameDetail extends Component{
 state = {
 
