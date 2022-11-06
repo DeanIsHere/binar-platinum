@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { set, ref, push, onValue, update } from "firebase/database";
 import { database} from "../config/firebase";
 
@@ -5,29 +6,66 @@ const db = database
 
 //write biodata
 
-export const CreateUser = (name,username,email) =>{
+export const registerUser= (id_player,name,username,email) =>{
     const dbRef = ref(db,`game_user`)
     const data = {
+        id_player, //isinya UID
         name,
         username,
-        email, //nanti ambil dari auth via decode jwt
+        email, //isinya email
         total_score:0,
-        city: null,
-        social_media: null,
-        profile_picture: null
+        city: "null",
+        social_media: "null",
+        profile_picture: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/e1fd5442419075.57cc3f77ed8c7.png"
     }
     push(dbRef, data)
 }
-
-//read one biodata
-export const getUserById = (id) => {
-    return new Promise((resolve, reject) => {
-      const dbRef = ref(db, `game_user/${id}`)
-      onValue(dbRef, (data) => {
-        const value = data.val()
-        resolve(value)
+// get all user
+export const retrieveAllUser = () => {
+  return new Promise((resolve, reject) => {
+    const dbRef = ref(db, 'game_user')
+    onValue(dbRef, (snapshot) => {
+      const value = []
+      // Ubah Object ke Array of Object
+      Object.keys(snapshot.val()).map(key => {
+        value.push({
+          id: key,
+          data: snapshot.val()[key]
+        })
       })
+      resolve(value)
     })
+  })
+}
+
+// get game score
+export const retrieveAllScore = () => {
+  return new Promise((resolve, reject) => {
+    const dbRef = ref(db, 'game_score')
+    onValue(dbRef, (snapshot) => {
+      const value = []
+      // Ubah Object ke Array of Object
+      Object.keys(snapshot.val()).map(key => {
+        value.push({
+          id: key,
+          data: snapshot.val()[key]
+        })
+      })
+      resolve(value)
+    })
+  })
+}
+//read one biodata
+export const getUserById = async(id) => {
+    const selected = []
+    const resp = await retrieveAllUser()
+    resp.forEach(e => {
+      if (e.data.id_player == id ){
+        selected.push(e)
+      }
+    });
+
+    return selected
   }
 
 //edit profile
@@ -70,9 +108,32 @@ export const getGameInfoById = (id) => {
   })
 }
 //total point
+export const totalPointByUser = async (id) => {
 
+}
 //game history
-
+export const historyByUser = async (id) => {
+    let store = []
+    const scoreAll = await retrieveAllScore()
+    scoreAll.forEach(e=> {
+      if (e.data.id_player == id ){
+        store.push(e)
+      }
+    });
+    return store
+}
 //leaderboard pergame
+export const leaderBoardByGame = async (id) => {
 
+}
 //jumlah user yang bermain pergame 
+export const countPlayerByGame = async (id) => {
+  let counter = 0
+  const scoreAll = await retrieveAllScore()
+  scoreAll.forEach(e=> {
+    if (e.data.game_id == id ){
+      counter = counter+1
+    }
+  });
+  return counter
+}

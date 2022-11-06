@@ -1,14 +1,13 @@
 import React from "react";
 import { Card, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { getGameInfoById } from "../../action/fb_database";
+import { countPlayerByGame, getGameInfoById } from "../../action/fb_database";
 import "./GameDetailHeader.css";
 import { useState } from "react";
 import { useEffect } from "react";
 
 
-const GameDetailHeader = ({ game_detail }) => {
-    console.log(game_detail);
+const GameDetailHeader = () => {
     const {id} = useParams()
     const [gameDetail, setgameDetail] = useState({
       game_description: "loading...",
@@ -16,15 +15,20 @@ const GameDetailHeader = ({ game_detail }) => {
       game_title: "loading...",
       game_url: "loading..."
     })
-
+    const [totalUser, settotalUser] = useState('loading...')
     const getGameDetail = async () =>{
       const resp = await getGameInfoById(id)
       setgameDetail(resp)
     }
-    
+    const countUser = async() =>{
+      const resp = await countPlayerByGame(id)
+      settotalUser(resp)
+      console.log('count',resp)
+    }
     useEffect(() => {
       getGameDetail()
-    },[])
+      countUser()
+    },[totalUser])
 
     return (
     <div>
@@ -48,7 +52,7 @@ const GameDetailHeader = ({ game_detail }) => {
   
               <div>
                 <Card.Title className="detail-header__rb--title">
-                  209
+                  {totalUser}
                 </Card.Title>
                 <Card.Text className="detail-header__rb--text">
                   PLAYERS
