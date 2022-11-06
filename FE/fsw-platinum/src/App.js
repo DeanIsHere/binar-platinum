@@ -13,6 +13,7 @@ import GameDetail from "./pages/GameDetail";
 import Register from "./pages/register";
 import EditProfile from "./pages/EditProfile";
 import GameRPS from "./pages/games/rock_paper_scissors";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/detail/:game" element={<GameDetail />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgot/password" element={<ForgotPassword />} />
           <Route path="/edit_profile/:id" element={<EditProfile />} />
         </Routes>
       </Router>
