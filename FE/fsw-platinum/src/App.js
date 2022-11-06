@@ -2,7 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { authFirebase } from "./config/firebase";
+import { ToastContainer } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Home from "./pages/home";
 import GameSpaceWar from "./pages/games/space_war";
@@ -11,6 +13,7 @@ import GameDetail from "./pages/GameDetail";
 import Register from "./pages/register";
 import EditProfile from "./pages/EditProfile";
 import GameRPS from "./pages/games/rock_paper_scissors";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,17 +37,21 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/game/spacewar" element={<GameSpaceWar />} />
-        <Route path="/game/game_rps" element={<GameRPS />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/detail/:id" element={<GameDetail />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/edit_profile/:id" element={<EditProfile />} />
-      </Routes>
-    </Router>
+    <>
+      <ToastContainer />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/game/spacewar" element={<GameSpaceWar />} />
+          <Route path="/game/game_rps" element={<GameRPS />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/detail/:game" element={<GameDetail />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot/password" element={<ForgotPassword />} />
+          <Route path="/edit_profile/:id" element={<EditProfile />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

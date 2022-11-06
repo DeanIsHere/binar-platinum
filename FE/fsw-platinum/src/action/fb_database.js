@@ -2,7 +2,7 @@ import { async } from "@firebase/util";
 import { set, ref, push, onValue, update } from "firebase/database";
 import { database} from "../config/firebase";
 
-const db = database
+const db = database;
 
 //write biodata
 
