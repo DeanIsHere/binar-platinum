@@ -137,7 +137,7 @@ export const retrieveAllSlideshow = () => {
 
 }
 
-export const getLeaderBoard = async () => {
+export const getLeaderBoard = async (limit = 0) => {
 
     // const player_data = await getPlayerById("")
     // console.log('player_data', player_data)
@@ -157,13 +157,15 @@ export const getLeaderBoard = async () => {
             var commentIndex = players.findIndex(function (c) {
                 return c.id_player == element.data.id_player;
             });
-            // console.log('--id_palyer--', player[commentIndex])
             players[commentIndex]['score'] += element.data.score;
         }
     });
 
     const playersDescending = [...players].sort((a, b) => b.score - a.score);
-    // console.log('--data_score--', playersDescending)
+
+    if (limit > 0) {
+        return playersDescending.slice(0, limit)
+    }
     return playersDescending
 
 }

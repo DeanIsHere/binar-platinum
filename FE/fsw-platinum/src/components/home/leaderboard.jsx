@@ -7,7 +7,7 @@ const Leaderboard = (props) => {
     const [dataList, setDataList] = useState([]);
 
     const getData = async () => {
-        const data_new = await getLeaderBoard()
+        const data_new = await getLeaderBoard(10)
         console.log('data_baru', data_new)
         setDataList(data_new)
     }
