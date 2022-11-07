@@ -90,6 +90,33 @@ export const retrieveAllGames = () => {
             resolve(value)
         })
     })
+}
+export const getPlayerById = (id) => {
+    return new Promise((resolve, reject) => {
+        const dbRef = ref(db, `game_user/${id}`)
+        onValue(dbRef, (data) => {
+            const value = data.val()
+            resolve(value)
+        })
+    })
+
+}
+
+export const retrieveAllGamesScore = () => {
+    return new Promise((resolve, reject) => {
+        const dbRef = ref(db, 'game_score')
+        onValue(dbRef, (snapshot) => {
+            const value = []
+            Object.keys(snapshot.val()).map(key => {
+                value.push({
+                    id: key,
+                    data: snapshot.val()[key]
+                })
+            })
+            // resolve(value)
+            resolve(value)
+        })
+    })
 
 }
 
@@ -107,5 +134,38 @@ export const retrieveAllSlideshow = () => {
             resolve(value)
         })
     })
+
+}
+
+export const getLeaderBoard = async (limit = 0) => {
+
+    // const player_data = await getPlayerById("")
+    // console.log('player_data', player_data)
+
+    const players = []
+    const data_score = await retrieveAllGamesScore()
+    data_score.forEach(async element => {
+        const found = players.some(el => el.id_player === element.data.id_player);
+        if (!found) {
+
+            players.push({
+                id_player: element.data.id_player,
+                name: element.data.id_player,
+                score: element.data.score,
+            })
+        } else {
+            var commentIndex = players.findIndex(function (c) {
+                return c.id_player == element.data.id_player;
+            });
+            players[commentIndex]['score'] += element.data.score;
+        }
+    });
+
+    const playersDescending = [...players].sort((a, b) => b.score - a.score);
+
+    if (limit > 0) {
+        return playersDescending.slice(0, limit)
+    }
+    return playersDescending
 
 }
