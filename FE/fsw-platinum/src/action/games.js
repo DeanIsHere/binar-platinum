@@ -138,10 +138,6 @@ export const retrieveAllSlideshow = () => {
 }
 
 export const getLeaderBoard = async (limit = 0) => {
-
-    // const player_data = await getPlayerById("")
-    // console.log('player_data', player_data)
-
     const players = []
     const data_score = await retrieveAllGamesScore()
     data_score.forEach(async element => {
@@ -162,6 +158,9 @@ export const getLeaderBoard = async (limit = 0) => {
     });
 
     const playersDescending = [...players].sort((a, b) => b.score - a.score);
+
+    // const playersDescending_2 = [...data_score].sort((a, b) => b.data.score - a.data.score);
+    // console.log("---- playersDescending_2 -----", playersDescending_2);
 
     if (limit > 0) {
         return playersDescending.slice(0, limit)
