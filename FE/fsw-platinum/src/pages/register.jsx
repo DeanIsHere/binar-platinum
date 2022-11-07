@@ -21,10 +21,10 @@ class Register extends Component {
   }
 
   handleRegister = () => {
-    registerUser(this.state.name, this.state.username, this.state.email)
-    createUserWithEmailAndPassword(authFirebase, this.state.email, this.state.password)
+       createUserWithEmailAndPassword(authFirebase, this.state.email, this.state.password)
       .then((userCredential) => {
         const user = userCredential.user;
+        registerUser(user.uid,this.state.name, this.state.username, this.state.email)
         localStorage.setItem('jwt-token', user.accessToken)
         window.location.href = '/'
       })
