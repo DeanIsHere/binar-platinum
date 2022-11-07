@@ -16,7 +16,9 @@ export const registerUser= (id_player,name,username,email) =>{
         total_score:0,
         city: "null",
         social_media: "null",
-        profile_picture: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/e1fd5442419075.57cc3f77ed8c7.png"
+        profile_picture: "https://mir-s3-cdn-cf.behance.net/project_modules/fs/e1fd5442419075.57cc3f77ed8c7.png",
+        total_game: 0,
+        player_rank: 0
     }
     push(dbRef, data)
 }
@@ -109,7 +111,21 @@ export const getGameInfoById = (id) => {
 }
 //total point
 export const totalPointByUser = async (id) => {
-
+  let store = []
+  let point = 0
+    const scoreAll = await retrieveAllScore()
+    scoreAll.forEach(e=> {
+      if (e.data.id_player == id ){
+        store.push(e)
+      }
+    });
+    store.forEach(e => {
+      point = point + e.data.score
+    });
+    const id_generate = await getUserById('eBYz2e1XsPeQjiKFi3PQ9QB1jGm2')
+    await updateScore(id_generate[0].id,point)
+    
+    return point
 }
 //game history
 export const historyByUser = async (id) => {
@@ -117,23 +133,66 @@ export const historyByUser = async (id) => {
     const scoreAll = await retrieveAllScore()
     scoreAll.forEach(e=> {
       if (e.data.id_player == id ){
-        store.push(e)
+        store.push(e.id)
       }
     });
-    return store
+    const player = await getUserById(id)
+    
+    return player
 }
-//leaderboard pergame
+//leaderboard pergame BELUM
 export const leaderBoardByGame = async (id) => {
-
+  let score = []
+  const scoreAll = await retrieveAllScore()
+    scoreAll.forEach(e=> {
+      if (e.data.game_id == id ){
+        score.push(e.id)
+      }
+    });
+  
+    return score
 }
 //jumlah user yang bermain pergame 
 export const countPlayerByGame = async (id) => {
   let counter = 0
+  let player = []
+  let game_player = []
   const scoreAll = await retrieveAllScore()
   scoreAll.forEach(e=> {
     if (e.data.game_id == id ){
+      player.push(e)
+    }
+  });
+  player.forEach(e => {
+    if (game_player.includes(e.data.id_player) === false){
+      game_player.push(e.data.id_player)
       counter = counter+1
     }
   });
   return counter
 }
+// player rank BELUM
+export const playerRank = async (id) =>{
+  let rank_sorted = []
+  const scoreAll = await retrieveAllScore()
+}
+// total game per user BELUM
+export const totalGameByUser = async (id) =>{
+  let game_list = []
+  let temp = []
+    const scoreAll = await retrieveAllScore()
+    scoreAll.forEach(e=> {
+      if (e.data.id_player == id ){
+        temp.push(e)
+      }
+    });
+    temp.forEach(e => {
+      if (game_list.includes(e.data.game_id)=== false){
+        game_list.push(e.data.game_id)
+      }
+    });
+    
+    return game_list.length
+}
+
+
