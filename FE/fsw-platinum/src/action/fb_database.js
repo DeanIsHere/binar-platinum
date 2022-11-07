@@ -1,15 +1,16 @@
 import { async } from "@firebase/util";
 import { set, ref, push, onValue, update } from "firebase/database";
 import { database} from "../config/firebase";
+import { authFirebase } from "../config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const db = database;
 
 //write biodata
 
-export const registerUser= (id_player,name,username,email) =>{
+export const registerUser= (name,username,email) =>{
     const dbRef = ref(db,`game_user`)
     const data = {
-        id_player, //isinya UID
         name,
         username,
         email, //isinya email
