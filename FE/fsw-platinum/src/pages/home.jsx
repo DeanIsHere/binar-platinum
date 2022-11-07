@@ -10,8 +10,9 @@ import btnSlide from '../assets/images/scroll_down.svg'
 import GameCard from '../components/home/game_card'
 import Slideshow from '../components/home/slideshow'
 import Footer from "../components/layout/footer/Footer";
-import { retrieveAllGames, retrieveAllSlideshow, seederGame } from "../action/games";
+import { getLeaderBoard, retrieveAllGames, retrieveAllSlideshow, seederGame } from "../action/games";
 import Navbar from "../components/layout/nav/Navbar";
+import Leaderboard from "../components/home/leaderboard";
 
 
 class Home extends Component {
@@ -37,7 +38,10 @@ class Home extends Component {
       gameList: data_game,
       slideshow: data_slideshow,
     })
+    await getLeaderBoard()
   }
+
+
 
   render() {
     return (
@@ -81,7 +85,7 @@ class Home extends Component {
                 <Row xs={1} md={1} className="g-4 py-3" >
                   {
                     this.state.gameList.map((data) => (
-                      <GameCard key={data.id} title={data.data.game_title} description={data.data.game_description} image={data.data.game_image} url={data.data.game_url} />
+                      <GameCard key={data['id']} title={data.data.game_title} description={data.data.game_description} image={data.data.game_image} url={data.data.game_url} />
                     ))
                   }
                 </Row>
@@ -92,8 +96,7 @@ class Home extends Component {
           </section>
         </Container>
         <section className="page-section  py-5" style={style.section_leaderboard} id="leaderboard">
-          <h3 className='text-center'>LEADER BOARD</h3>
-
+          <Leaderboard />
         </section>
         <Footer />
 
