@@ -62,7 +62,7 @@ export const getUserById = async(id) => {
     const selected = []
     const resp = await retrieveAllUser()
     resp.forEach(e => {
-      if (e.data.id_player == id ){
+      if (e.data.id_player === id ){
         selected.push(e)
       }
     });
@@ -140,17 +140,32 @@ export const historyByUser = async (id) => {
     
     return player
 }
-//leaderboard pergame BELUM
+//leaderboard pergame
 export const leaderBoardByGame = async (id) => {
-  let score = []
+  let temp = []
+  let result = []
+  
   const scoreAll = await retrieveAllScore()
     scoreAll.forEach(e=> {
       if (e.data.game_id == id ){
-        score.push(e.id)
+          temp.push(e)
       }
     });
-  
-    return score
+    
+      temp.reduce(function(res, value) {
+      if (!res[value.data.id_player]) {
+        res[value.data.id_player] = { id_player: value.data.id_player, score: 0 };
+        result.push(res[value.data.id_player])
+      }
+      res[value.data.id_player].score += value.data.score;
+      return res;
+    }, {});
+    // const sorted = Object.keys(resultan).sort(function(a,b){return resultan[a]-resultan(b)})
+    let tempSort = result.sort((a,b)=>{
+      return b.score-a.score
+    })
+    
+    return tempSort
 }
 //jumlah user yang bermain pergame 
 export const countPlayerByGame = async (id) => {
@@ -171,12 +186,25 @@ export const countPlayerByGame = async (id) => {
   });
   return counter
 }
-// player rank BELUM
+// player rank
 export const playerRank = async (id) =>{
-  let rank_sorted = []
-  const scoreAll = await retrieveAllScore()
+  let result = []
+  const scoreAll = await retrieveAllScore() 
+      scoreAll.reduce(function(res, value) {
+      if (!res[value.data.id_player]) {
+        res[value.data.id_player] = { id_player: value.data.id_player, score: 0 };
+        result.push(res[value.data.id_player])
+      }
+      res[value.data.id_player].score += value.data.score;
+      return res;
+    }, {});
+    let tempSort = result.sort((a,b)=>{
+      return b.score-a.score
+    })
+    const rank = tempSort.findIndex(x => x.id_player === id)
+    return rank+1
 }
-// total game per user BELUM
+// total game per user
 export const totalGameByUser = async (id) =>{
   let game_list = []
   let temp = []
