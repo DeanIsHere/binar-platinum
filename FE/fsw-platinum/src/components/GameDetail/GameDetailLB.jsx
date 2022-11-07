@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import "./GameDetailLB.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getUserById, leaderBoardByGame, retrieveAllUser } from "../../action/fb_database";
+import { leaderBoardByGame } from "../../action/fb_database";
 
 const GameDetailLB = () => {
   const {id} = useParams()

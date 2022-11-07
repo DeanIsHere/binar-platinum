@@ -72,15 +72,17 @@ export const getUserById = async(id) => {
   }
 
 //edit profile
-export const updateProfile = (id, name,username, city, social_media) => {
+export const updateProfile = (id, name,username, city, social_media, profile_picture) => {
     const dbRef = ref(db, `game_user/${id}`)
     const data = {
         name,
         username,
         city,
-        social_media
+        social_media,
+        profile_picture
     }
     update(dbRef, data)
+    console.log("update done")
   }
 
 //update score
@@ -123,7 +125,7 @@ export const totalPointByUser = async (id) => {
     store.forEach(e => {
       point = point + e.data.score
     });
-    const id_generate = await getUserById('eBYz2e1XsPeQjiKFi3PQ9QB1jGm2')
+    const id_generate = await getUserById(id)
     await updateScore(id_generate[0].id,point)
     
     return point
