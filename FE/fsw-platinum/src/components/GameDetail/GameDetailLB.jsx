@@ -1,8 +1,22 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import "./GameDetailLB.css";
+import { useState } from "react";
+import { useEffect } from "react";
+import { leaderBoardByGame } from "../../action/fb_database";
 
 const GameDetailLB = () => {
+  const {id} = useParams()
+  const [LeaderBoard, setLeaderBoard]= useState([])
+  
+  const boardHandler = async () =>{
+    const resp = await leaderBoardByGame(id)
+    setLeaderBoard(resp)
+  }
+  useEffect(()=>{
+    boardHandler()
+  },[])
   return (
     <section className="section-detail__game--history">
       <Card
@@ -20,7 +34,30 @@ const GameDetailLB = () => {
         </div>
 
         {/* Game Leader Board Bottom */}
-        <Card.Body>{/* Game History */}</Card.Body>
+        <Card.Body>
+          <Table  bordered variant="dark">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>User Name</th>
+                <th>User ID</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+               LeaderBoard.map((e, index)=>(
+                  <tr>
+                    <td>{index+1}</td>
+                    <td>masih error</td>
+                    <td>{e.id_player}</td>
+                    <td>{e.score}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </Table>
+        </Card.Body>
       </Card>
     </section>
   );
