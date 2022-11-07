@@ -1,7 +1,8 @@
 import React from "react";
 import logo from "../../../assets/images/echamp-white.png";
-import Login from '../../login/login'
+import Login from "../../login/login";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { authFirebase } from "../../../config/firebase";
 import { checkDataLogin, firebaseLogout } from "../../../action/autentication";
@@ -10,23 +11,34 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
   const [showModal, setShowModal] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
 
+  let dispatch = useDispatch();
+
   const toggleModal = () => {
     setShowModal((previousValue) => !previousValue);
-  }
+  };
 
   const handleLogout = () => {
-    firebaseLogout()
-  }
+    dispatch({
+      type: "LOGOUT",
+      payload: null,
+    });
+    firebaseLogout();
+  };
   useEffect(() => {
-    checkDataLogin(setIsLogin)
+    checkDataLogin(setIsLogin);
   }, []);
 
   return (
     <>
-      <nav className='navbar navbar-expand-lg navbar-dark fixed-top'
-        style={transparant ? null : { backgroundColor: bgColor ? `${bgColor}` : "#212529" }}
-        id="mainNav">
-
+      <nav
+        className="navbar navbar-expand-lg navbar-dark fixed-top"
+        style={
+          transparant
+            ? null
+            : { backgroundColor: bgColor ? `${bgColor}` : "#212529" }
+        }
+        id="mainNav"
+      >
         <div className="container">
           <a className="navbar-brand" href="/">
             <img src={logo} />
@@ -61,7 +73,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
                 </a>
               </li>
             </ul>
-            {isLogin ?
+            {isLogin ? (
               <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li className="nav-item">
                   <a className="nav-link" href="/profile/1">
@@ -70,12 +82,20 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
                 </li>
                 <li className="nav-item">
                   {/* <a className="nav-link" href="#" onClick={handleLogout}> */}
-                  <a className="nav-link" href="#" onClick={() => { if (window.confirm('Aure you sure to Logout?')) { handleLogout() }; }}>
+                  <a
+                    className="nav-link"
+                    href="#"
+                    onClick={() => {
+                      if (window.confirm("Are you sure to Logout?")) {
+                        handleLogout();
+                      }
+                    }}
+                  >
                     LOGOUT
                   </a>
                 </li>
               </ul>
-              :
+            ) : (
               <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li className="nav-item">
                   <a className="nav-link" href="#" onClick={toggleModal}>
@@ -83,13 +103,11 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
                   </a>
                 </li>
               </ul>
-            }
+            )}
           </div>
         </div>
       </nav>
-      <Login
-        showModal={showModal}
-        toggleFunc={toggleModal} />
+      <Login showModal={showModal} toggleFunc={toggleModal} />
     </>
   );
 };
