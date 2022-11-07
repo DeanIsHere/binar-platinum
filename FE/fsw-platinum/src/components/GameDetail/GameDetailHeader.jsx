@@ -23,7 +23,6 @@ const GameDetailHeader = () => {
     const countUser = async() =>{
       const resp = await countPlayerByGame(id)
       settotalUser(resp)
-      console.log('count',resp)
     }
     useEffect(() => {
       getGameDetail()
