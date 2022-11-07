@@ -8,9 +8,10 @@ const db = database;
 
 //write biodata
 
-export const registerUser= (name,username,email) =>{
+export const registerUser= (id_player,name,username,email) =>{
     const dbRef = ref(db,`game_user`)
     const data = {
+        id_player,
         name,
         username,
         email, //isinya email
