@@ -10,14 +10,18 @@ import '../assets/pages/register/styles.css';
 import logo from '../assets/images/echamp-white.png';
 import Navbar from '../components/layout/nav/Navbar';
 import Footer from '../components/layout/footer/Footer'
+import { handleRegister, registerUser } from "../action/fb_database";
 
 class Register extends Component {
   state={
     email: '',
-    password: ''
+    password: '',
+    name: '',
+    username: ''
   }
-  
+
   handleRegister = () => {
+    registerUser(this.state.name, this.state.username, this.state.email)
     createUserWithEmailAndPassword(authFirebase, this.state.email, this.state.password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -67,7 +71,7 @@ class Register extends Component {
                     <Form.Control 
                     type="nama" 
                     placeholder="NAMA" 
-                    id="nama"
+                    id="name"
                     onChange={this.handleOnChange}/>
                   </Form.Group>
                   <Form.Group className="mb-3">
