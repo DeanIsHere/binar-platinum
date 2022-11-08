@@ -3,11 +3,11 @@ import { set, ref, push, onValue, update } from "firebase/database";
 import { database } from "../config/firebase";
 import { authFirebase } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { retrieveAllGames } from "./games";
 
 const db = database;
 
 //write biodata
+
 export const registerUser = (id_player, name, username, email) => {
   const dbRef = ref(db, `game_user`);
   const data = {
@@ -152,7 +152,6 @@ export const historyByUser = async (id) => {
 
   return store;
 };
-
 //leaderboard pergame
 export const leaderBoardByGame = async (id) => {
   let temp = [];
