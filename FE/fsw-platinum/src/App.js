@@ -32,9 +32,7 @@ function App() {
 
         dispatch({
           type: "LOGGED_IN_USER",
-          payload: {
-            userGame,
-          },
+          payload: userGame,
         });
       }
     });
