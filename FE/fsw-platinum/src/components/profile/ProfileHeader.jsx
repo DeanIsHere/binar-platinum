@@ -23,7 +23,11 @@ const ProfileHeader = ({ user, totalGame, totalPoint, playerRankByUser }) => {
         {/* Profile Header Left*/}
         <Card.Img
           className="profile-header__left--img"
-          src={user?.data?.profile_picture}
+          src={
+            user?.data?.profile_picture
+              ? user?.data?.profile_picture
+              : "https://mir-s3-cdn-cf.behance.net/project_modules/fs/e1fd5442419075.57cc3f77ed8c7.png"
+          }
           alt="user profile"
         />
         <div className="d-flex flex-column w-100">
