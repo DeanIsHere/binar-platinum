@@ -8,7 +8,6 @@ const Leaderboard = (props) => {
 
     const getData = async () => {
         const data_new = await getLeaderBoard(10)
-        console.log('data_baru', data_new)
         setDataList(data_new)
     }
 
@@ -22,7 +21,7 @@ const Leaderboard = (props) => {
             <div style={{ alignItems: 'center', justifyContent: 'center', alignItems: 'center' }} className='w-100 text-start mt-4'>
                 {
                     dataList.map((data) => (
-                        <LeaderboardCard data={data} />
+                        <LeaderboardCard key={data.id_player} data={data} />
                     ))
                 }
             </div>
