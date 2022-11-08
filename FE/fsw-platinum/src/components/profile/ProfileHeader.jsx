@@ -1,12 +1,19 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import UserProfilePhoto from "../../assets/images/user-profile-photo.png";
+import { useNavigate } from "react-router-dom";
+
 import "./ProfileHeader.css";
 
-const ProfileHeader = ({ user }) => {
-  console.log(user);
+const ProfileHeader = ({ user, totalGame, totalPoint, playerRankByUser }) => {
+  let navigate = useNavigate();
+  const editHandler = () => {
+    navigate(`/edit_profile/${user?.data?.id_player}`);
+  };
 
-  const editHandler = () => {};
+  const socialMediaHandler = () => {
+    navigate(`/${user.social_media}`);
+  };
+
   return (
     <section className="section-profile__header d-flex">
       <Card
@@ -16,7 +23,7 @@ const ProfileHeader = ({ user }) => {
         {/* Profile Header Left*/}
         <Card.Img
           className="profile-header__left--img"
-          src={UserProfilePhoto}
+          src={user?.data?.profile_picture}
           alt="user profile"
         />
         <div className="d-flex flex-column w-100">
@@ -25,16 +32,25 @@ const ProfileHeader = ({ user }) => {
           <Card.Header className="profile-header__rt">
             <div>
               <Card.Title className="profile-header__rt--title">
-                {user.playerName}
+                {user?.data?.name}
               </Card.Title>
               <Card.Text className="profile-header__rt--text">
-                {user.username}
+                {user?.data?.username}
+              </Card.Text>
+              <Card.Text className="profile-header__rt--text">
+                {user?.data?.city}
               </Card.Text>
             </div>
 
-            <div>
-              <button className="btn-edit__profile" onClick={editHandler}>
+            <div className="d-flex flex-column">
+              <button className="btn-edit__profile mb-2" onClick={editHandler}>
                 EDIT PROFILE
+              </button>
+              <button
+                className="btn-edit__profile"
+                onClick={socialMediaHandler}
+              >
+                SOCIAL MEDIA
               </button>
             </div>
           </Card.Header>
@@ -43,7 +59,7 @@ const ProfileHeader = ({ user }) => {
             <div className="profile-header__rb">
               <div>
                 <Card.Title className="profile-header__rb--title">
-                  {user.totalGame}
+                  {totalGame}
                 </Card.Title>
                 <Card.Text className="profile-header__rb--text">
                   TOTAL GAME
@@ -51,7 +67,7 @@ const ProfileHeader = ({ user }) => {
               </div>
               <div>
                 <Card.Title className="profile-header__rb--title">
-                  {user.totalPoint}
+                  {totalPoint}
                 </Card.Title>
                 <Card.Text className="profile-header__rb--text">
                   TOTAL POINT
@@ -59,7 +75,7 @@ const ProfileHeader = ({ user }) => {
               </div>
               <div>
                 <Card.Title className="profile-header__rb--title">
-                  {user.playerRank}
+                  {playerRankByUser}
                 </Card.Title>
                 <Card.Text className="profile-header__rb--text">
                   PLAYER RANK
