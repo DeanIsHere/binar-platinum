@@ -38,6 +38,7 @@
 .profile-header__rt--text {
   font-size: 0.5rem;
   color: #fff;
+  margin: 0;
 }
 
 .profile-header__rb {
@@ -87,8 +88,8 @@
 
 @media (min-width: 768px) {
   .profile-header__left--img {
-    max-width: 230px;
-    max-height: 230px;
+    max-width: 260px;
+    max-height: 260px;
   }
 
   .btn-edit__profile {
