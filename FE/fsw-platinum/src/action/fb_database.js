@@ -59,6 +59,7 @@ export const retrieveAllScore = () => {
     })
   })
 }
+
 //read one biodata
 export const getUserById = async(id) => {
     const selected = []
@@ -137,12 +138,11 @@ export const historyByUser = async (id) => {
     const scoreAll = await retrieveAllScore()
     scoreAll.forEach(e=> {
       if (e.data.id_player == id ){
-        store.push(e.id)
+        store.push(e)
       }
     });
-    const player = await getUserById(id)
     
-    return player
+    return store
 }
 //leaderboard pergame
 export const leaderBoardByGame = async (id) => {
