@@ -33,7 +33,7 @@ function App() {
         dispatch({
           type: "LOGGED_IN_USER",
           payload: {
-            user: userGame,
+            userGame,
           },
         });
       }
