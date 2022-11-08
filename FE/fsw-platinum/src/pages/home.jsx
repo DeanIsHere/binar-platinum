@@ -60,7 +60,7 @@ class Home extends Component {
           <center>
             <div style={style.header_card}>
               <h2>ABOUT</h2>
-              <span>ini adalah tempat tulisan detail tentang website ini adalah tempat tulisan detail tentang website ini adalah tempat tulisan detail tentang website ini adalah tempat tulisan detail tentang website ini adalah tempat tulisan detail tentang website </span>
+              <span>play your favorite games online, no need to download and can be played for free, all the scores you get will be recorded and will be displayed if you are the best of everyone </span>
             </div>
           </center>
 
