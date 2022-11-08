@@ -13,8 +13,6 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
 
   const { user: userGame } = useSelector((state) => ({ ...state }));
 
-  console.log(userGame);
-
   let dispatch = useDispatch();
 
   const toggleModal = () => {

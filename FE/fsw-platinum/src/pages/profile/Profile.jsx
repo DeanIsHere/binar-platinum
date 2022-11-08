@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { getUserById } from "../../action/fb_database";
 import Footer from "../../components/layout/footer/Footer";
 import Navbar from "../../components/layout/nav/Navbar";
 import ProfileGameHistory from "../../components/profile/ProfileGameHistory";
@@ -15,10 +16,14 @@ const Profile = () => {
     playerRank: "1.342",
   });
   const { id: playerId } = useParams();
-
+  console.log(playerId);
   useEffect(() => {
-    // Fetch User By Id
-  }, []);
+    async function initData() {
+      const userDataById = await getUserById(playerId);
+      console.log(userDataById);
+    }
+    initData();
+  }, [playerId]);
 
   return (
     <>
