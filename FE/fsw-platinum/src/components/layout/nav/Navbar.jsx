@@ -11,6 +11,8 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
   const [showModal, setShowModal] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
 
+  const { user: userGame } = useSelector((state) => ({ ...state }));
+
   let dispatch = useDispatch();
 
   const toggleModal = () => {
@@ -76,7 +78,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
             {isLogin ? (
               <ul className="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link" href="/profile/1">
+                  <a className="nav-link" href={`/profile/${userGame?.uid}`}>
                     PROFILE
                   </a>
                 </li>
