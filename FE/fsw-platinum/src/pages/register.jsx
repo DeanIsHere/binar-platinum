@@ -26,6 +26,7 @@ class Register extends Component {
         const user = userCredential.user;
         registerUser(user.uid,this.state.name, this.state.username, this.state.email)
         localStorage.setItem('jwt-token', user.accessToken)
+        localStorage.setItem('UID', user.uid)
         window.location.href = '/'
       })
       .catch((error) => {
