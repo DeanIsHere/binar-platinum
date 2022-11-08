@@ -5,6 +5,7 @@ import "./GameDetailLB.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { leaderBoardByGame, retrieveAllUser } from "../../action/fb_database";
+import LBCardGame from "./LBCardGame";
 
 const GameDetailLB = () => {
   const {id} = useParams()
@@ -46,26 +47,11 @@ const GameDetailLB = () => {
 
         {/* Game Leader Board Bottom */}
         <Card.Body>
-          <Table  bordered variant="dark">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>User Name</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-               LeaderBoard.map((e, index)=>(
-                  <tr key={index+1}>
-                    <td>{index+1}</td>
-                    <td>{Player[e.id_player]}</td>
-                    <td>{e.score}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </Table>
+          {
+            LeaderBoard.map((e, index)=>(
+              <LBCardGame index={index+1} username={Player[e.id_player]} score={e.score} profile_picture={e.profile_picture} />
+            ))
+          }
         </Card.Body>
       </Card>
     </section>
