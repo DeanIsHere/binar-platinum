@@ -24,10 +24,16 @@ function App() {
         const idTokenResult = await user.getIdTokenResult();
         console.log("user", user);
 
+        const userGame = {
+          email: user.email,
+          uid: user.uid,
+          token: idTokenResult,
+        };
+
         dispatch({
           type: "LOGGED_IN_USER",
           payload: {
-            user,
+            user: userGame,
           },
         });
       }
