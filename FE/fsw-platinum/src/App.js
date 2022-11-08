@@ -49,7 +49,7 @@ function App() {
           <Route path="/game/spacewar" element={<GameSpaceWar />} />
           <Route path="/game/game_rps" element={<GameRPS />} />
           <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/detail/:game" element={<GameDetail />} />
+          <Route path="/detail/:id" element={<GameDetail />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot/password" element={<ForgotPassword />} />
           <Route path="/edit_profile/:id" element={<EditProfile />} />

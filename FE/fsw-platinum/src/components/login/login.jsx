@@ -27,8 +27,7 @@ class Login extends Component {
         console.log(user)
         localStorage.setItem('jwt-token', user.accessToken)
         localStorage.setItem('UID', user.uid)
-        window.location.reload(false);
-        // window.location.href = '/'
+        window.location.href = '/'
       })
       .catch((error) => {
         const errorMessage = error.message;

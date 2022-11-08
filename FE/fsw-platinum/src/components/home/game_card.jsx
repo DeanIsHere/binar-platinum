@@ -8,6 +8,7 @@ const GameCard = (props) => {
         checkDataLogin(setIsLogin)
     }, []);
 
+    // console.log(props.key)
     return (
         <Col className='mt-2'>
             <Card style={{ backgroundColor: '#00000050' }}>
@@ -23,9 +24,16 @@ const GameCard = (props) => {
                             {
                                 (props.url) ?
                                     (isLogin) ?
-                                        <a style={{ position: "relative", bottom: 0 }} href={props.url} className="btn btn-success">PLAY GAME</a>
+                                        <div>
+                                            <a style={{ position: "relative", bottom: 0 }} href={props.url} className="btn btn-success mx-2">PLAY GAME</a>
+                                            <a style={{ position: "relative", bottom: 0 }} href={`/detail/-NG-Fxccy-8f1RZoup6D`} className="btn btn-success">DETAIL</a>
+                                        </div>
                                         :
-                                        <a style={{ position: "relative", bottom: 0 }} className="btn btn-secondary" disabled>LOGIN BEFORE PLAY</a>
+                                        <div>
+                                            <a style={{ position: "relative", bottom: 0 }} className="btn btn-secondary mx-2" disabled>LOGIN BEFORE PLAY</a>
+                                            <a style={{ position: "relative", bottom: 0 }} href={`/detail/-NG-Fxccy-8f1RZoup6D`} className="btn btn-success">DETAIL</a>
+                                        </div>
+
                                     :
                                     <Button style={{ position: "relative", bottom: 0 }} className="btn btn-secondary" disabled>COMING SOON</Button>
                             }
