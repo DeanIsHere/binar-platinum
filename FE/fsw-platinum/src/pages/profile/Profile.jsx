@@ -14,9 +14,9 @@ import ProfileGameHistory from "../../components/profile/ProfileGameHistory";
 import ProfileHeader from "../../components/profile/ProfileHeader";
 const Profile = () => {
   const [userDataById, setUserDataById] = useState({});
-  const [totalGame, setTotalGame] = useState("");
-  const [totalPoint, setTotalPoint] = useState("");
-  const [playerRankByUser, setPlayerRankByUser] = useState("");
+  const [totalGame, setTotalGame] = useState("0");
+  const [totalPoint, setTotalPoint] = useState("0");
+  const [playerRankByUser, setPlayerRankByUser] = useState("0");
   const [userGameHistory, setUserGameHistory] = useState([]);
   const { id: playerId } = useParams();
   console.log(playerId);
