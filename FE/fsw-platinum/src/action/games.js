@@ -113,6 +113,23 @@ export const retrieveAllGames = () => {
   });
 };
 
+export const retrieveAllPlayer = () => {
+  return new Promise((resolve, reject) => {
+    const dbRef = ref(db, "game_user");
+    onValue(dbRef, (snapshot) => {
+      const value = [];
+      Object.keys(snapshot.val()).map((key) => {
+        value.push({
+          id: key,
+          data: snapshot.val()[key],
+        });
+      });
+      // resolve(value)
+      resolve(value);
+    });
+  });
+};
+
 export const getPlayerById = (id) => {
   return new Promise((resolve, reject) => {
     const dbRef = ref(db, `game_user/${id}`);
@@ -156,18 +173,39 @@ export const retrieveAllSlideshow = () => {
   });
 };
 
+export const getPlayerByUUID = async (id_player) => {
+  return new Promise((resolve, reject) => {
+    const dbRef = ref(db, "game_user");
+
+    onValue(dbRef, (snapshot) => {
+      Object.keys(snapshot.val()).map((key) => {
+        if (snapshot.val()[key]["id_player"] == id_player) {
+          resolve(snapshot.val()[key]);
+        }
+      });
+      resolve(null);
+    });
+  });
+};
+
 export const getLeaderBoard = async (limit = 0) => {
-  // const player_data = await getPlayerById("")
-  // console.log('player_data', player_data)
+  const py = await retrieveAllPlayer();
 
   const players = [];
   const data_score = await retrieveAllGamesScore();
   data_score.forEach(async (element) => {
     const found = players.some((el) => el.id_player === element.data.id_player);
     if (!found) {
+      let name = "< Unknown >";
+      const py_index = py.findIndex(function (c) {
+        return c.data.id_player == element.data.id_player;
+      });
+      if (py_index >= 0) {
+        name = py[py_index].data.name;
+      }
       players.push({
         id_player: element.data.id_player,
-        name: element.data.id_player,
+        name: name,
         score: element.data.score,
       });
     } else {
@@ -183,5 +221,4 @@ export const getLeaderBoard = async (limit = 0) => {
   if (limit > 0) {
     return playersDescending.slice(0, limit);
   }
-  return playersDescending;
 };

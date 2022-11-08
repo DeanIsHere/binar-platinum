@@ -20,7 +20,7 @@ const GameSpaceWar = () => {
         codeUrl: "/game/space_war/BinarSpaceWar.wasm.unityweb",
     });
 
-    sendMessage("JavascriptHook", "ChangeData", "HarlanSR");
+    // sendMessage("JavascriptHook", "ChangeData", "HarlanSR");
 
 
     const handleGameOver = useCallback((userName2, score) => {

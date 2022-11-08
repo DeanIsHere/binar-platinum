@@ -35,6 +35,7 @@ class Register extends Component {
           this.state.email
         );
         localStorage.setItem("jwt-token", user.accessToken);
+        localStorage.setItem("UID", user.uid);
         window.location.href = "/";
       })
       .catch((error) => {

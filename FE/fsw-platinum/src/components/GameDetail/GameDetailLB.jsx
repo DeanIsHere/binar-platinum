@@ -4,18 +4,29 @@ import { useParams } from "react-router-dom";
 import "./GameDetailLB.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import { leaderBoardByGame } from "../../action/fb_database";
+import { leaderBoardByGame, retrieveAllUser } from "../../action/fb_database";
 
 const GameDetailLB = () => {
   const {id} = useParams()
   const [LeaderBoard, setLeaderBoard]= useState([])
-  
+  const [Player, setPlayer] = useState({})
+
+  const playerHandler = async () => {
+    const temp = {}
+    const resp = await retrieveAllUser()
+    resp.forEach(e => {
+      temp[e.data.id_player] = e.data.username
+    });
+    setPlayer(temp)
+  }
+
   const boardHandler = async () =>{
     const resp = await leaderBoardByGame(id)
     setLeaderBoard(resp)
   }
   useEffect(()=>{
     boardHandler()
+    playerHandler()
   },[])
   return (
     <section className="section-detail__game--history">
@@ -40,17 +51,15 @@ const GameDetailLB = () => {
               <tr>
                 <th>Rank</th>
                 <th>User Name</th>
-                <th>User ID</th>
                 <th>Score</th>
               </tr>
             </thead>
             <tbody>
               {
                LeaderBoard.map((e, index)=>(
-                  <tr>
+                  <tr key={index+1}>
                     <td>{index+1}</td>
-                    <td>masih error</td>
-                    <td>{e.id_player}</td>
+                    <td>{Player[e.id_player]}</td>
                     <td>{e.score}</td>
                   </tr>
                 ))

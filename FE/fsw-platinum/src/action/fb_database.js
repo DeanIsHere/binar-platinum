@@ -60,6 +60,7 @@ export const retrieveAllScore = () => {
     });
   });
 };
+
 //read one biodata
 export const getUserById = async (id) => {
   const selected = [];
@@ -151,6 +152,7 @@ export const historyByUser = async (id) => {
 
   return store;
 };
+
 //leaderboard pergame
 export const leaderBoardByGame = async (id) => {
   let temp = [];

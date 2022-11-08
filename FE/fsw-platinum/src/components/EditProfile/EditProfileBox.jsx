@@ -7,6 +7,7 @@ import { getUserById } from "../../action/fb_database";
 import { useParams } from "react-router-dom";
 import { updateProfile } from "../../action/fb_database";
 import { async } from "@firebase/util";
+import { uploadProfileImg } from "../../action/fb_storage";
 
 const EditProfileBox = () => {
   const {id} = useParams()
@@ -48,22 +49,32 @@ const EditProfileBox = () => {
        });
   };
   
-  const InputFile = (event) =>{
-    
+  const InputFile = async (event) =>{
+   let file = event.target.files[0]
+   console.log("test file",file)
+   let url = await uploadProfileImg(file)
+   console.log("test url",url)
+    setUserInfo({
+    id: UserInfo.id,
+    name: UserInfo.name,
+    username: UserInfo.username,
+    email: UserInfo.email,
+    city: UserInfo.city,
+    social_media: UserInfo.social_media,
+    profile_picture: url
+  })
   }
+
   useEffect(()=>{
     handleGetUser()
-    
   },[])
-
-  console.log(UserInfo)
+  
   return (
     <section className="section-detail__game--history">
       <Card
         style={{
           backgroundColor: "#3B3838",
-          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-          height: "50vh",
+          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"
         }}
       >
         {/* Game Leader Board Top */}
@@ -145,11 +156,12 @@ const EditProfileBox = () => {
                 <Form.Label>Profile Picture</Form.Label>
                 <Form.Control 
                 type="file" 
+                onChange={InputFile}
                 />
               </Form.Group>
               </div>
-              <div>
-              <Button variant="success" onClick={() =>handleUpdate()}>Success</Button>
+              <div className="tombolUpdate">
+              <Button  variant="success" onClick={() =>handleUpdate()}>UPDATE</Button>
               </div>
             </Col>
           </Row>
