@@ -179,15 +179,20 @@ export const getLeaderBoard = async (limit = 0) => {
         const found = players.some(el => el.id_player === element.data.id_player);
         if (!found) {
             let name = "< Unknown >"
+            let image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
             const py_index = py.findIndex(function (c) {
                 return c.data.id_player == element.data.id_player
             })
             if (py_index >= 0) {
                 name = py[py_index].data.name
             }
+            if (element.data.profile_picture) {
+                image = element.data.profile_picture;
+            }
             players.push({
                 id_player: element.data.id_player,
                 name: name,
+                image: image,
                 score: element.data.score,
             })
         } else {
