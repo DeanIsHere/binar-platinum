@@ -221,4 +221,5 @@ export const getLeaderBoard = async (limit = 0) => {
   if (limit > 0) {
     return playersDescending.slice(0, limit);
   }
+  return playersDescending;
 };
