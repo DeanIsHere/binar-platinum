@@ -20,7 +20,7 @@ class Register extends Component {
     username: ''
   }
 
-  handleRegister = () => {
+  handleRegister =() => {
     createUserWithEmailAndPassword(authFirebase, this.state.email, this.state.password)
       .then((userCredential) => {
         const user = userCredential.user;
