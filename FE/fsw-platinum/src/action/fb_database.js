@@ -3,6 +3,7 @@ import { set, ref, push, onValue, update } from "firebase/database";
 import { database } from "../config/firebase";
 import { authFirebase } from "../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { retrieveAllGames } from "./games";
 
 const db = database;
 
@@ -144,12 +145,11 @@ export const historyByUser = async (id) => {
   const scoreAll = await retrieveAllScore();
   scoreAll.forEach((e) => {
     if (e.data.id_player == id) {
-      store.push(e.id);
+      store.push(e);
     }
   });
-  const player = await getUserById(id);
 
-  return player;
+  return store;
 };
 //leaderboard pergame
 export const leaderBoardByGame = async (id) => {
