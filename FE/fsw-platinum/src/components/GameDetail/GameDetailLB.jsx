@@ -12,9 +12,12 @@ const GameDetailLB = () => {
   const [Player, setPlayer] = useState({})
 
   const playerHandler = async () => {
+    const temp = {}
     const resp = await retrieveAllUser()
-    setPlayer(resp)
-    console.log(Player)
+    resp.forEach(e => {
+      temp[e.data.id_player] = e.data.username
+    });
+    setPlayer(temp)
   }
 
   const boardHandler = async () =>{
@@ -48,7 +51,6 @@ const GameDetailLB = () => {
               <tr>
                 <th>Rank</th>
                 <th>User Name</th>
-                <th>User ID</th>
                 <th>Score</th>
               </tr>
             </thead>
@@ -57,8 +59,7 @@ const GameDetailLB = () => {
                LeaderBoard.map((e, index)=>(
                   <tr key={index+1}>
                     <td>{index+1}</td>
-                    <td>masih error</td>
-                    <td>{e.id_player}</td>
+                    <td>{Player[e.id_player]}</td>
                     <td>{e.score}</td>
                   </tr>
                 ))
