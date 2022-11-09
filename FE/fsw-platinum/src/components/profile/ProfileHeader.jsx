@@ -1,7 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
 import "./ProfileHeader.css";
 
 const ProfileHeader = ({ user, totalGame, totalPoint, playerRankByUser }) => {
