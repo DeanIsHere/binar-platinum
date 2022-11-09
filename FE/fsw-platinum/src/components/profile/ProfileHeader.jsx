@@ -11,7 +11,7 @@ const ProfileHeader = ({ user, totalGame, totalPoint, playerRankByUser }) => {
   };
 
   const socialMediaHandler = () => {
-    navigate(`/${user.social_media}`);
+    window.location.href = user.data.social_media
   };
 
   return (
