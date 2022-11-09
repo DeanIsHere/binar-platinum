@@ -39,6 +39,27 @@ const GameDetailLB = () => {
     playerHandler();
     profilePicHandler();
   }, []);
+    setPlayer(temp)
+  }
+  const profilePicHandler = async () => {
+    const temp = {}
+    const resp = await retrieveAllUser()
+    resp.forEach(e => {
+      temp[e.data.id_player] = e.data.profile_picture
+    });
+    setProfilePic(temp)
+  }
+
+  const boardHandler = async () =>{
+    const resp = await leaderBoardByGame(id)
+    setLeaderBoard(resp)
+  }
+
+  useEffect(()=>{
+    boardHandler()
+    playerHandler()
+    profilePicHandler()
+  },[])
   return (
     <section className="section-detail__game--history">
       <Card
