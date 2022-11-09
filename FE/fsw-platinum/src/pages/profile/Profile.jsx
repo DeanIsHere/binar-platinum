@@ -1,37 +1,22 @@
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import {
-  getUserById,
-  historyByUser,
-  playerRank,
-  totalGameByUser,
-  totalPointByUser,
-} from "../../action/fb_database";
+import { getUserById, historyByUser } from "../../action/fb_database";
 import Footer from "../../components/layout/footer/Footer";
 import Navbar from "../../components/layout/nav/Navbar";
 import ProfileGameHistory from "../../components/profile/ProfileGameHistory";
 import ProfileHeader from "../../components/profile/ProfileHeader";
 const Profile = () => {
   const [userDataById, setUserDataById] = useState({});
-  const [totalGame, setTotalGame] = useState("");
-  const [totalPoint, setTotalPoint] = useState("");
-  const [playerRankByUser, setPlayerRankByUser] = useState("");
   const [userGameHistory, setUserGameHistory] = useState([]);
   const { id: playerId } = useParams();
   console.log(playerId);
   useEffect(() => {
     async function initData() {
       const userDataById = await getUserById(playerId);
-      const totalGameUser = await totalGameByUser(playerId);
-      const totalPointUser = await totalPointByUser(playerId);
-      const playerRankUser = await playerRank(playerId);
       const userGameHistoryById = await historyByUser(playerId);
 
       setUserDataById(userDataById[0]);
-      setTotalGame(totalGameUser);
-      setTotalPoint(totalPointUser);
-      setPlayerRankByUser(playerRankUser);
       setUserGameHistory(userGameHistoryById);
     }
     initData();
@@ -50,12 +35,7 @@ const Profile = () => {
             style={{ maxWidth: "1024px", margin: "auto", padding: "9rem 0rem" }}
           >
             <Container>
-              <ProfileHeader
-                user={userDataById}
-                totalGame={totalGame}
-                totalPoint={totalPoint}
-                playerRankByUser={playerRankByUser}
-              />
+              <ProfileHeader user={userDataById} playerId={playerId} />
             </Container>
           </article>
 

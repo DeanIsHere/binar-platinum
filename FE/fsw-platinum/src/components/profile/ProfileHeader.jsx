@@ -1,18 +1,43 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import {
+  playerRank,
+  totalGameByUser,
+  totalPointByUser,
+} from "../../action/fb_database";
 import "./ProfileHeader.css";
 
-const ProfileHeader = ({ user, totalGame, totalPoint, playerRankByUser }) => {
+const ProfileHeader = ({ user, playerId }) => {
+  const [totalGame, setTotalGame] = useState("0");
+  const [totalPoint, setTotalPoint] = useState("0");
+  const [playerRankByUser, setPlayerRankByUser] = useState("0");
   let navigate = useNavigate();
   const editHandler = () => {
     navigate(`/edit_profile/${user?.data?.id_player}`);
   };
 
   const socialMediaHandler = () => {
-    navigate(`/${user.social_media}`);
+    window.location.href = user.data.social_media;
   };
+
+  useEffect(() => {
+    async function initData() {
+      try {
+        const totalGameUser = await totalGameByUser(playerId);
+        const totalPointUser = await totalPointByUser(playerId);
+        const playerRankUser = await playerRank(playerId);
+
+        setTotalGame(totalGameUser);
+        setTotalPoint(totalPointUser);
+        setPlayerRankByUser(playerRankUser);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    initData();
+  }, [playerId]);
 
   return (
     <section className="section-profile__header d-flex">
@@ -23,7 +48,11 @@ const ProfileHeader = ({ user, totalGame, totalPoint, playerRankByUser }) => {
         {/* Profile Header Left*/}
         <Card.Img
           className="profile-header__left--img"
-          src={user?.data?.profile_picture}
+          src={
+            user?.data?.profile_picture
+              ? user?.data?.profile_picture
+              : "https://mir-s3-cdn-cf.behance.net/project_modules/fs/e1fd5442419075.57cc3f77ed8c7.png"
+          }
           alt="user profile"
         />
         <div className="d-flex flex-column w-100">

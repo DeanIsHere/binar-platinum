@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { authFirebase } from "../../../config/firebase";
 import { checkDataLogin, firebaseLogout } from "../../../action/autentication";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ bgColor, user, transparant = false }) => {
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +15,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
   const { user: userGame } = useSelector((state) => ({ ...state }));
 
   let dispatch = useDispatch();
-
+  let navigate = useNavigate();
   const toggleModal = () => {
     setShowModal((previousValue) => !previousValue);
   };
@@ -24,6 +25,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
       type: "LOGOUT",
       payload: null,
     });
+    navigate("/");
     firebaseLogout();
   };
   useEffect(() => {

@@ -5,29 +5,40 @@ import "./GameDetailLB.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { leaderBoardByGame, retrieveAllUser } from "../../action/fb_database";
+import LBCardGame from "./LBCardGame";
 
 const GameDetailLB = () => {
-  const {id} = useParams()
-  const [LeaderBoard, setLeaderBoard]= useState([])
-  const [Player, setPlayer] = useState({})
-
+  const { id } = useParams();
+  const [LeaderBoard, setLeaderBoard] = useState([]);
+  const [Player, setPlayer] = useState({});
+  const [ProfilePic, setProfilePic] = useState({});
   const playerHandler = async () => {
-    const temp = {}
-    const resp = await retrieveAllUser()
-    resp.forEach(e => {
-      temp[e.data.id_player] = e.data.username
+    const temp = {};
+    const resp = await retrieveAllUser();
+    resp.forEach((e) => {
+      temp[e.data.id_player] = e.data.username;
     });
-    setPlayer(temp)
-  }
+    setPlayer(temp);
+  };
+  const profilePicHandler = async () => {
+    const temp = {};
+    const resp = await retrieveAllUser();
+    resp.forEach((e) => {
+      temp[e.data.id_player] = e.data.profile_picture;
+    });
+    setProfilePic(temp);
+  };
 
-  const boardHandler = async () =>{
-    const resp = await leaderBoardByGame(id)
-    setLeaderBoard(resp)
-  }
-  useEffect(()=>{
-    boardHandler()
-    playerHandler()
-  },[])
+  const boardHandler = async () => {
+    const resp = await leaderBoardByGame(id);
+    setLeaderBoard(resp);
+  };
+
+  useEffect(() => {
+    boardHandler();
+    playerHandler();
+    profilePicHandler();
+  }, []);
   return (
     <section className="section-detail__game--history">
       <Card
@@ -46,31 +57,19 @@ const GameDetailLB = () => {
 
         {/* Game Leader Board Bottom */}
         <Card.Body>
-          <Table  bordered variant="dark">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>User Name</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-               LeaderBoard.map((e, index)=>(
-                  <tr key={index+1}>
-                    <td>{index+1}</td>
-                    <td>{Player[e.id_player]}</td>
-                    <td>{e.score}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </Table>
+          {LeaderBoard.map((e, index) => (
+            <LBCardGame
+              key={index + 1}
+              index={index + 1}
+              username={Player[e.id_player]}
+              score={e.score}
+              profile_picture={ProfilePic[e.id_player]}
+            />
+          ))}
         </Card.Body>
       </Card>
     </section>
   );
 };
-
 
 export default GameDetailLB;

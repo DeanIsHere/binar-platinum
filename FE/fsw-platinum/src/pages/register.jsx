@@ -37,6 +37,7 @@ class Register extends Component {
         localStorage.setItem("jwt-token", user.accessToken);
         localStorage.setItem("UID", user.uid);
         window.location.href = "/";
+        window.close();
       })
       .catch((error) => {
         const errorMessage = error.message;
