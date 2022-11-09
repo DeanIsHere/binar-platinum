@@ -203,9 +203,9 @@ export const getLeaderBoard = async (limit = 0) => {
             })
             if (py_index >= 0) {
                 name = py[py_index].data.name
-            }
-            if (element.data.profile_picture) {
-                image = element.data.profile_picture;
+                if (py[py_index].data.profile_picture) {
+                    image = py[py_index].data.profile_picture;
+                }
             }
             players.push({
                 id_player: element.data.id_player,
