@@ -15,7 +15,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
   const { user: userGame } = useSelector((state) => ({ ...state }));
 
   let dispatch = useDispatch();
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const toggleModal = () => {
     setShowModal((previousValue) => !previousValue);
   };
@@ -25,9 +25,8 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
       type: "LOGOUT",
       payload: null,
     });
-    navigate('/')
+    navigate("/");
     firebaseLogout();
-    
   };
   useEffect(() => {
     checkDataLogin(setIsLogin);
