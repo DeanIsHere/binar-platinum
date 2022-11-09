@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getUserById } from "../../action/fb_database";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { updateProfile } from "../../action/fb_database";
 import { async } from "@firebase/util";
 import { uploadProfileImg } from "../../action/fb_storage";
@@ -52,6 +53,8 @@ const EditProfileBox = () => {
       UserInfo.social_media,
       UserInfo.profile_picture
     );
+
+    toast.success("update successfully");
   };
 
   const InputEvent = (event) => {
