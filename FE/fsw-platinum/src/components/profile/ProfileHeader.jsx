@@ -1,18 +1,43 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import {
+  playerRank,
+  totalGameByUser,
+  totalPointByUser,
+} from "../../action/fb_database";
 import "./ProfileHeader.css";
 
-const ProfileHeader = ({ user, totalGame, totalPoint, playerRankByUser }) => {
+const ProfileHeader = ({ user, playerId }) => {
+  const [totalGame, setTotalGame] = useState("0");
+  const [totalPoint, setTotalPoint] = useState("0");
+  const [playerRankByUser, setPlayerRankByUser] = useState("0");
   let navigate = useNavigate();
   const editHandler = () => {
     navigate(`/edit_profile/${user?.data?.id_player}`);
   };
 
   const socialMediaHandler = () => {
-    navigate(`/${user.social_media}`);
+    window.location.href = user.data.social_media;
   };
+
+  useEffect(() => {
+    async function initData() {
+      try {
+        const totalGameUser = await totalGameByUser(playerId);
+        const totalPointUser = await totalPointByUser(playerId);
+        const playerRankUser = await playerRank(playerId);
+
+        setTotalGame(totalGameUser);
+        setTotalPoint(totalPointUser);
+        setPlayerRankByUser(playerRankUser);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    initData();
+  }, [playerId]);
 
   return (
     <section className="section-profile__header d-flex">

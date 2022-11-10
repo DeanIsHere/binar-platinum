@@ -41,8 +41,6 @@ class Home extends Component {
     await getLeaderBoard()
   }
 
-
-
   render() {
     return (
       <div style={{ backgroundColor: '#2B2D33', color: '#fff' }}>
