@@ -16,8 +16,8 @@ export const registerUser = (id_player, name, username, email) => {
     username,
     email, //isinya email
     total_score: 0,
-    city: "null",
-    social_media: "null",
+    city: "",
+    social_media: "",
     profile_picture:
       "https://mir-s3-cdn-cf.behance.net/project_modules/fs/e1fd5442419075.57cc3f77ed8c7.png",
     total_game: 0,

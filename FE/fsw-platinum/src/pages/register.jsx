@@ -26,16 +26,16 @@ class Register extends Component {
       this.state.email,
       this.state.password
     )
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         const user = userCredential.user;
-        registerUser(
+        await registerUser(
           user.uid,
           this.state.name,
           this.state.username,
           this.state.email
         );
-        localStorage.setItem("jwt-token", user.accessToken);
-        localStorage.setItem("UID", user.uid);
+        await localStorage.setItem("jwt-token", user.accessToken);
+        await localStorage.setItem("UID", user.uid);
         window.location.href = "/";
         window.close();
       })
